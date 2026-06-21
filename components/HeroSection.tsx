@@ -134,7 +134,7 @@ export default function HeroSection() {
               className="flex flex-col sm:flex-row flex-wrap w-full sm:w-auto gap-4 mb-10 justify-center lg:justify-start"
             >
               <a 
-                href="https://wa.me/919985111136?text=Hello%20Sharada%20Associates,%20I%20would%20like%20to%20know%20more%20about%20Education%20Loans%20and%20Admission%20Assistance." 
+                href="https://wa.me/919985111136" 
                 target="_blank" 
                 rel="noreferrer" 
                 className="btn-primary gap-2 w-full sm:w-auto justify-center hover:scale-105 transition-transform"
@@ -144,20 +144,20 @@ export default function HeroSection() {
                 WhatsApp Us
               </a>
               <a 
-                href="mailto:dilipreddy99@gmail.com?subject=Inquiry%20from%20Website&body=Hello%20Sharada%20Associates,%0A%0AI%20would%20like%20to%20know%20more%20about%20your%20services.%0A%0AThank%20you." 
+                href="mailto:dilipreddy99@gmail.com" 
                 className="btn-outline gap-2 w-full sm:w-auto justify-center hover:scale-105 transition-transform"
                 style={{ background: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.3)", color: "#fff" }}
               >
                 <Mail className="w-5 h-5" />
                 Email Us
               </a>
-              <Link 
-                href="/contact" 
+              <a 
+                href="tel:+919985111136" 
                 className="btn-outline w-full sm:w-auto justify-center hover:scale-105 transition-transform"
                 style={{ background: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.3)", color: "#fff" }}
               >
-                Get Free Consultation
-              </Link>
+                Call Now
+              </a>
             </motion.div>
 
             {/* Trust badges */}
