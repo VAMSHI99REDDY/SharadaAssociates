@@ -13,7 +13,7 @@ const badges = [
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen h-auto flex items-center bg-[#F9F8F5] dark:bg-[#0B0F19] transition-colors duration-300" style={{ overflow: "hidden" }}>
+    <section className="relative h-auto flex items-center bg-[#F9F8F5] dark:bg-[#0B0F19] transition-colors duration-300" style={{ overflow: "hidden" }}>
 
       {/* Background image */}
       <div className="absolute inset-0 z-0">
