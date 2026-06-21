@@ -1,11 +1,10 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata = {
-  title: "SharadaAssociates – Empowering Dreams Through Smart Financial Solutions",
+  title: "SharadaAssociates – Expert Financial Guidance & Comprehensive Loan Solutions",
   description:
     "SharadaAssociates provides educational loans for students planning to study abroad and financial services including business, vehicle, housing, movie financing, and personal loans.",
 };
@@ -28,7 +27,6 @@ export default function RootLayout({
           <Navbar />
           <main>{children}</main>
           <Footer />
-          <WhatsAppButton />
         </ThemeProvider>
       </body>
     </html>

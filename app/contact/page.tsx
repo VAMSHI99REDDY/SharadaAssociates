@@ -18,7 +18,7 @@ const contactInfo = [
     icon: MapPin,
     label: "Location",
     value: "SR Nagar, Hyderabad, Telangana",
-    href: "#map",
+    href: "https://maps.app.goo.gl/nE4s72eKLGd3F63J9",
     color: "bg-zinc-50 dark:bg-zinc-800/50",
     iconColor: "text-zinc-800 dark:text-zinc-200",
   },
@@ -122,12 +122,16 @@ export default function ContactPage() {
               </div>
 
               {/* Map placeholder */}
-              <div id="map" className="rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 shadow-lg">
-                <div className="p-4 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+              <div id="map" className="relative rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 shadow-lg group">
+                <div className="p-4 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 relative z-10">
                   <h3 className="font-bold text-lg text-gray-900 dark:text-white flex items-center gap-2">
-                    <MapPin className="w-5 h-5 text-[#D4A017]" /> Find Us On Map
+                    <MapPin className="w-5 h-5 text-[#D4A017]" /> 
+                    <a href="https://maps.app.goo.gl/nE4s72eKLGd3F63J9" target="_blank" rel="noopener noreferrer" className="hover:text-[#D4A017] transition-colors hover:underline">
+                      Find Us On Map
+                    </a>
                   </h3>
                 </div>
+                <a href="https://maps.app.goo.gl/nE4s72eKLGd3F63J9" target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-20" aria-label="Open in Google Maps"></a>
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.6669915848523!2d78.44185791487687!3d17.43983228804689!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb90c5c562dc69%3A0x6b8db7c0401b38f8!2sSatya%20Sai%20Apartments%2C%20Srinivasa%20Nagar%20Colony%2C%20Sanjeeva%20Reddy%20Nagar%2C%20Hyderabad%2C%20Telangana%20500038!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin"
                   width="100%"

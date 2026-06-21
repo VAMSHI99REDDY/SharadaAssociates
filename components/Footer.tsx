@@ -91,7 +91,7 @@ export default function Footer() {
             </div>
 
             <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
-              Empowering Dreams Through Smart Financial Solutions. Your trusted partner for
+              Expert Financial Guidance & Comprehensive Loan Solutions. Your trusted partner for
               education and financial growth.
             </p>
 

@@ -6,9 +6,9 @@ import { ArrowRight, Shield, Clock, Award, GraduationCap, MessageCircle, Mail, A
 import heroBg from "./images/herobackground.jpeg";
 
 const badges = [
-  { icon: Shield, label: "Max Unsecured Education Loans",   color: "#2563EB", bg: "#EFF6FF" },
   { icon: Award,  label: "National & Intl. Loan Experts",      color: "#10B981", bg: "#ECFDF5" },
   { icon: Clock,  label: "Associated with Leading Banks",     color: "#D4A017", bg: "#FEF3C7" },
+  { icon: Shield, label: "Max Unsecured Education Loans",   color: "#2563EB", bg: "#EFF6FF" },
 ];
 
 export default function HeroSection() {
@@ -88,7 +88,7 @@ export default function HeroSection() {
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 drop-shadow-md"
               style={{ color: "#FFFFFF", letterSpacing: "-0.02em" }}
             >
-              Empowering Dreams Through{" "}
+              Expert Financial Guidance &{" "}
               <span
                 className="relative inline-block"
                 style={{
@@ -98,9 +98,9 @@ export default function HeroSection() {
                   backgroundClip: "text",
                 }}
               >
-                Smart
+                Comprehensive
               </span>{" "}
-              Financial{" "}
+              Loan{" "}
               <span
                 style={{
                   background: "linear-gradient(135deg, #93C5FD, #3B82F6)",
