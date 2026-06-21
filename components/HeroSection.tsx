@@ -275,28 +275,14 @@ export default function HeroSection() {
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-        className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 z-30 cursor-pointer backdrop-blur-sm bg-black/20 px-3 py-2 sm:px-4 sm:py-3 rounded-3xl border border-white/10"
+        className="absolute bottom-[15px] md:bottom-[25px] [@media(max-height:800px)]:bottom-[40px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 z-[100] cursor-pointer backdrop-blur-md bg-black/50 px-[14px] py-[8px] rounded-full"
         onClick={() => window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' })}
       >
-        <motion.div 
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="text-[#D4AF37]"
-        >
-          <ArrowDown className="w-3 h-3 sm:w-4 sm:h-4" />
-        </motion.div>
-
-        <span
-          className="text-[9px] sm:text-[10px] font-semibold tracking-[2px] uppercase text-white"
-        >
-          Scroll Down
-        </span>
-
         {/* Mouse shell with glow */}
-        <div className="relative mt-1">
+        <div className="relative mt-0.5">
           <div className="absolute inset-0 bg-[#D4AF37] blur-md opacity-40 rounded-full animate-pulse"></div>
           <div
-            className="w-4 h-7 sm:w-5 sm:h-8 rounded-full flex justify-center pt-1.5 relative z-10"
+            className="h-[22px] md:h-[28px] w-[14px] md:w-[18px] rounded-full flex justify-center pt-[3px] md:pt-[5px] relative z-10"
             style={{
               border: "2px solid #D4AF37",
               background: "rgba(0,0,0,0.3)",
@@ -304,21 +290,20 @@ export default function HeroSection() {
           >
             {/* Inner dot with gold color + pulse */}
             <motion.div
-              animate={{ y: [0, 8, 0], opacity: [1, 0.3, 1] }}
-              transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
-              className="w-1 h-1.5 sm:w-1.5 sm:h-1.5 rounded-full"
+              animate={{ y: [0, 6, 0], opacity: [1, 0.4, 1] }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+              className="w-1 h-1.5 md:w-1 md:h-2 rounded-full"
               style={{ background: "#D4AF37" }}
             />
           </div>
         </div>
 
-        <motion.div 
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="text-[#D4AF37] mt-1"
+        <span
+          className="font-medium tracking-[1px] text-[10px] md:text-[12px] mt-0.5"
+          style={{ color: "rgba(255,255,255,0.95)" }}
         >
-          <ArrowDown className="w-3 h-3 sm:w-4 sm:h-4" />
-        </motion.div>
+          Scroll
+        </span>
       </motion.div>
     </section>
   );
