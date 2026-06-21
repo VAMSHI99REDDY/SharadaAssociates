@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 
 export default function WhatsAppButton() {
-  const phone = "919XXXXXXXXX"; // Replace with actual WhatsApp number
+  const phone = "919985111136";
   const message = encodeURIComponent(
     "Hello Sharada Associates, I would like to know more about Education Loans and Admission Assistance."
   );

@@ -156,7 +156,7 @@ export default function Footer() {
                 >
                   <Phone className="w-4 h-4" style={{ color: "var(--royal-blue)" }} />
                 </div>
-                <span className="text-sm" style={{ color: "var(--text-secondary)" }}>+91 XXXXX XXXXX</span>
+                <a href="tel:+919985111136" className="text-sm hover:underline" style={{ color: "var(--text-secondary)" }}>+91 9985111136</a>
               </li>
               <li className="flex items-start gap-3">
                 <div
@@ -165,16 +165,20 @@ export default function Footer() {
                 >
                   <Mail className="w-4 h-4" style={{ color: "var(--gold)" }} />
                 </div>
-                <span className="text-sm" style={{ color: "var(--text-secondary)" }}>info@sharadaassociates.com</span>
+                <a href="mailto:dilipreddy99@gmail.com?subject=Inquiry%20from%20Website&body=Hello%20Sharada%20Associates,%0A%0AI%20would%20like%20to%20know%20more%20about%20your%20services.%0A%0AThank%20you." className="text-sm hover:underline break-all" style={{ color: "var(--text-secondary)" }}>dilipreddy99@gmail.com</a>
               </li>
               <li className="flex items-start gap-3">
                 <div
                   className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
                   style={{ background: "var(--emerald-light)" }}
                 >
-                  <MapPin className="w-4 h-4" style={{ color: "var(--emerald)" }} />
+                  <MapPin className="w-4 h-4 mt-1" style={{ color: "var(--emerald)" }} />
                 </div>
-                <span className="text-sm" style={{ color: "var(--text-secondary)" }}>Office Address, City, State – PIN</span>
+                <span className="text-sm" style={{ color: "var(--text-secondary)" }}>
+                  H No: 7-1-321/S, Satya Sai Apartment,<br/>
+                  Flat No: 206, 2nd Floor, Srinivasa Nagar Colony,<br/>
+                  SR Nagar, Hyderabad – 500038
+                </span>
               </li>
             </ul>
 

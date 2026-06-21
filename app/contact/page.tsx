@@ -205,7 +205,7 @@ export default function ContactPage() {
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Start Your Study Abroad Journey Today</h2>
             <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg">Connect with Sharada Associates for expert admission guidance and education loan assistance.</p>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <a href="tel:+91XXXXXXXXXX" className="btn-primary">
+              <a href="tel:+919985111136" className="btn-primary">
                 <Phone className="w-5 h-5" />
                 Call Now
               </a>
