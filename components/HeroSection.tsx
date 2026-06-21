@@ -56,7 +56,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 pb-24 z-20 w-full">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 pb-[120px] z-20 w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
 
           {/* ── Left content ── */}
@@ -158,6 +158,48 @@ export default function HeroSection() {
               >
                 Get Free Consultation
               </Link>
+            </motion.div>
+
+            {/* Inline Scroll indicator */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="w-full flex justify-center lg:justify-start mb-10"
+            >
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                className="flex flex-col items-center gap-1.5 z-[1000] cursor-pointer backdrop-blur-md bg-black/50 px-[14px] py-[8px] rounded-full w-max shadow-lg"
+                onClick={() => window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' })}
+              >
+                {/* Mouse shell with glow */}
+                <div className="relative mt-0.5">
+                  <div className="absolute inset-0 bg-[#D4AF37] blur-md opacity-40 rounded-full animate-pulse"></div>
+                  <div
+                    className="h-[22px] md:h-[28px] w-[14px] md:w-[18px] rounded-full flex justify-center pt-[3px] md:pt-[5px] relative z-10"
+                    style={{
+                      border: "2px solid #D4AF37",
+                      background: "rgba(0,0,0,0.3)",
+                    }}
+                  >
+                    {/* Inner dot with gold color + pulse */}
+                    <motion.div
+                      animate={{ y: [0, 6, 0], opacity: [1, 0.4, 1] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                      className="w-1 h-1.5 md:w-1 md:h-2 rounded-full"
+                      style={{ background: "#D4AF37" }}
+                    />
+                  </div>
+                </div>
+
+                <span
+                  className="font-medium tracking-[1px] text-[10px] md:text-[12px] mt-0.5"
+                  style={{ color: "rgba(255,255,255,0.95)" }}
+                >
+                  Scroll Down
+                </span>
+              </motion.div>
             </motion.div>
 
             {/* Trust badges */}
@@ -269,42 +311,6 @@ export default function HeroSection() {
             </div>
           </motion.div>
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-        className="absolute bottom-[15px] md:bottom-[25px] [@media(max-height:800px)]:bottom-[40px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 z-[100] cursor-pointer backdrop-blur-md bg-black/50 px-[14px] py-[8px] rounded-full"
-        onClick={() => window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' })}
-      >
-        {/* Mouse shell with glow */}
-        <div className="relative mt-0.5">
-          <div className="absolute inset-0 bg-[#D4AF37] blur-md opacity-40 rounded-full animate-pulse"></div>
-          <div
-            className="h-[22px] md:h-[28px] w-[14px] md:w-[18px] rounded-full flex justify-center pt-[3px] md:pt-[5px] relative z-10"
-            style={{
-              border: "2px solid #D4AF37",
-              background: "rgba(0,0,0,0.3)",
-            }}
-          >
-            {/* Inner dot with gold color + pulse */}
-            <motion.div
-              animate={{ y: [0, 6, 0], opacity: [1, 0.4, 1] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-              className="w-1 h-1.5 md:w-1 md:h-2 rounded-full"
-              style={{ background: "#D4AF37" }}
-            />
-          </div>
-        </div>
-
-        <span
-          className="font-medium tracking-[1px] text-[10px] md:text-[12px] mt-0.5"
-          style={{ color: "rgba(255,255,255,0.95)" }}
-        >
-          Scroll
-        </span>
-      </motion.div>
     </section>
   );
 }
