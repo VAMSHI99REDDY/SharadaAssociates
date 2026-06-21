@@ -1,7 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Target, Eye, Users, Award, Shield, TrendingUp } from "lucide-react";
 import Testimonials from "@/components/Testimonials";
+import founderImg from "@/components/images/Founder.jpeg";
 
 const values = [
   { icon: Shield, title: "Trust & Transparency", description: "No hidden fees. Clear communication at every step of your loan journey." },
@@ -98,8 +100,8 @@ export default function AboutPage() {
                 <div className="relative group w-full max-w-sm">
                   <div className="absolute -inset-2 bg-gradient-to-r from-[#D4A017] to-amber-600 rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-700"></div>
                   <div className="relative p-10 bg-white dark:bg-zinc-800 rounded-[2rem] shadow-xl flex flex-col items-center justify-center min-h-[320px]">
-                    <div className="w-28 h-28 rounded-full bg-gradient-to-tr from-[#D4A017] to-[#F59E0B] flex items-center justify-center text-4xl font-bold text-white shadow-gold mb-6 relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
-                      DR
+                    <div className="w-28 h-28 rounded-full bg-gradient-to-tr from-[#D4A017] to-[#F59E0B] flex items-center justify-center shadow-gold mb-6 relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
+                      <Image src={founderImg} alt="G. Dilip Reddy" fill className="object-cover" />
                       <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white">G. Dilip Reddy</h3>

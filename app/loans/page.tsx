@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  GraduationCap, Briefcase, Car, Home, Film, User, X,
+  GraduationCap, Briefcase, Car, Home, Film, User, Wallet, X,
 } from "lucide-react";
 import EducationLoanForm from "@/components/forms/EducationLoanForm";
 import BusinessLoanForm from "@/components/forms/BusinessLoanForm";
@@ -25,11 +25,13 @@ const studyCountries = [
 ];
 
 const otherLoans = [
-  { id: "business", icon: Briefcase, title: "Business Loan", description: "Financing for your business growth and expansion.", color: "hover:bg-zinc-50 dark:hover:bg-zinc-800/20", iconColor: "text-zinc-800 dark:text-zinc-200", form: BusinessLoanForm },
-  { id: "vehicle", icon: Car, title: "Vehicle Loan", description: "Drive your dream with flexible vehicle financing.", color: "hover:bg-zinc-50 dark:hover:bg-zinc-800/20", iconColor: "text-zinc-800 dark:text-zinc-200", form: VehicleLoanForm },
-  { id: "housing", icon: Home, title: "Housing Loan", description: "Build or buy your dream home affordably.", color: "hover:bg-zinc-50 dark:hover:bg-zinc-800/20", iconColor: "text-zinc-800 dark:text-zinc-200", form: HousingLoanForm },
-  { id: "movie", icon: Film, title: "Movie Financing", description: "Bring your cinematic vision to life.", color: "hover:bg-zinc-50 dark:hover:bg-zinc-800/20", iconColor: "text-zinc-800 dark:text-zinc-200", form: MovieFinancingForm },
-  { id: "personal", icon: User, title: "Personal Loan", description: "Flexible personal financing for every need.", color: "hover:bg-zinc-50 dark:hover:bg-zinc-800/20", iconColor: "text-zinc-800 dark:text-zinc-200", form: PersonalLoanForm },
+  { id: "business", icon: Briefcase, title: "Business Loans", description: "Financing for your business growth and expansion.", color: "hover:bg-zinc-50 dark:hover:bg-zinc-800/20", iconColor: "text-zinc-800 dark:text-zinc-200", form: BusinessLoanForm },
+  { id: "vehicle", icon: Car, title: "Vehicle Loans", description: "Drive your dream with flexible vehicle financing.", color: "hover:bg-zinc-50 dark:hover:bg-zinc-800/20", iconColor: "text-zinc-800 dark:text-zinc-200", form: VehicleLoanForm },
+  { id: "housing", icon: Home, title: "Housing Loans", description: "Build or buy your dream home affordably.", color: "hover:bg-zinc-50 dark:hover:bg-zinc-800/20", iconColor: "text-zinc-800 dark:text-zinc-200", form: HousingLoanForm },
+  { id: "movie", icon: Film, title: "Movie Financing", description: "Bring your cinematic vision to life with reliable funding.", color: "hover:bg-zinc-50 dark:hover:bg-zinc-800/20", iconColor: "text-zinc-800 dark:text-zinc-200", form: MovieFinancingForm },
+  { id: "personal", icon: User, title: "Personal Loans", description: "Flexible personal financing for every need.", color: "hover:bg-zinc-50 dark:hover:bg-zinc-800/20", iconColor: "text-zinc-800 dark:text-zinc-200", form: PersonalLoanForm },
+  { id: "fund", icon: Wallet, title: "Fund Arrangement", description: "Professional assistance for financial fund arrangements.", color: "hover:bg-zinc-50 dark:hover:bg-zinc-800/20", iconColor: "text-zinc-800 dark:text-zinc-200", form: BusinessLoanForm },
+  { id: "admission", icon: GraduationCap, title: "Admission Assistance", description: "Complete support for university admissions.", color: "hover:bg-zinc-50 dark:hover:bg-zinc-800/20", iconColor: "text-zinc-800 dark:text-zinc-200", form: EducationLoanForm },
 ];
 
 type LoanType = typeof otherLoans[0] | null;
@@ -150,7 +152,7 @@ export default function LoansPage() {
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{loan.title}</h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{loan.description}</p>
                   <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-200 group-hover:underline">
-                    Apply Now →
+                    Learn More →
                   </span>
                 </button>
               </motion.div>
