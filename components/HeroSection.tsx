@@ -13,7 +13,7 @@ const badges = [
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center bg-[#F9F8F5] dark:bg-[#0B0F19] transition-colors duration-300" style={{ overflow: "hidden" }}>
+    <section className="relative min-h-screen h-auto flex items-center bg-[#F9F8F5] dark:bg-[#0B0F19] transition-colors duration-300" style={{ overflow: "hidden" }}>
 
       {/* Background image */}
       <div className="absolute inset-0 z-0">
@@ -22,7 +22,7 @@ export default function HeroSection() {
           alt="Modern skyscraper office building representing corporate growth"
           fill
           priority
-          className="object-cover object-right dark:opacity-20 transition-opacity duration-300"
+          className="object-cover object-center dark:opacity-20 transition-opacity duration-300"
           style={{ opacity: 1, filter: "brightness(1.9) contrast(1.02) saturate(1.1)" }}
         />
         {/* Black shadow overlay */}
@@ -56,7 +56,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 pb-[120px] z-20 w-full">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 lg:pt-32 lg:pb-20 z-20 w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
 
           {/* ── Left content ── */}
@@ -158,48 +158,6 @@ export default function HeroSection() {
               >
                 Get Free Consultation
               </Link>
-            </motion.div>
-
-            {/* Inline Scroll indicator */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="w-full flex justify-center lg:justify-start mb-10"
-            >
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                className="flex flex-col items-center gap-1.5 z-[1000] cursor-pointer backdrop-blur-md bg-black/50 px-[14px] py-[8px] rounded-full w-max shadow-lg"
-                onClick={() => window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' })}
-              >
-                {/* Mouse shell with glow */}
-                <div className="relative mt-0.5">
-                  <div className="absolute inset-0 bg-[#D4AF37] blur-md opacity-40 rounded-full animate-pulse"></div>
-                  <div
-                    className="h-[22px] md:h-[28px] w-[14px] md:w-[18px] rounded-full flex justify-center pt-[3px] md:pt-[5px] relative z-10"
-                    style={{
-                      border: "2px solid #D4AF37",
-                      background: "rgba(0,0,0,0.3)",
-                    }}
-                  >
-                    {/* Inner dot with gold color + pulse */}
-                    <motion.div
-                      animate={{ y: [0, 6, 0], opacity: [1, 0.4, 1] }}
-                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-                      className="w-1 h-1.5 md:w-1 md:h-2 rounded-full"
-                      style={{ background: "#D4AF37" }}
-                    />
-                  </div>
-                </div>
-
-                <span
-                  className="font-medium tracking-[1px] text-[10px] md:text-[12px] mt-0.5"
-                  style={{ color: "rgba(255,255,255,0.95)" }}
-                >
-                  Scroll Down
-                </span>
-              </motion.div>
             </motion.div>
 
             {/* Trust badges */}
