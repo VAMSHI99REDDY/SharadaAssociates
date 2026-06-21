@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+/* ── Brand Tokens ── */
+:root {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #FFFFFF;
+  --text-primary: #111827;
+  --text-secondary: #6B7280;
+  --border: rgba(0,0,0,0.08);
+
+  /* Glass card tokens */
+  --glass-bg: rgba(255,255,255,0.85);
+  --glass-border: rgba(255,255,255,0.6);
+  --glass-shadow: 0 8px 32px rgba(0,0,0,0.08);
+
+  /* Buttons */
+  --btn-primary-bg: #111827;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-hover: #1f2937;
+
+  /* Accent palette */
+  --gold: #D4A017;
+  --gold-light: #FEF3C7;
+  --royal-blue: #2563EB;
+  --royal-blue-light: #EFF6FF;
+  --emerald: #10B981;
+  --emerald-light: #ECFDF5;
+  --orange: #F59E0B;
+  --orange-light: #FFF7ED;
+  --purple: #8B5CF6;
+  --purple-light: #F5F3FF;
+}
+
+.dark {
+  --bg-primary: #0F172A; /* Slate 900 */
+  --bg-secondary: #1E293B; /* Slate 800 */
+  --text-primary: #F8FAFC; /* Slate 50 */
+  --text-secondary: #94A3B8; /* Slate 400 */
+  --border: rgba(255,255,255,0.08);
+
+  /* Glass card tokens */
+  --glass-bg: rgba(30,41,59,0.85);
+  --glass-border: rgba(255,255,255,0.08);
+  --glass-shadow: 0 8px 32px rgba(0,0,0,0.3);
+
+  /* Buttons */
+  --btn-primary-bg: #F8FAFC;
+  --btn-primary-text: #0F172A;
+  --btn-primary-hover: #E2E8F0;
+
+  /* Accent palette */
+  --gold-light: rgba(212,160,23,0.15);
+  --royal-blue-light: rgba(37,99,235,0.15);
+  --emerald-light: rgba(16,185,129,0.15);
+  --orange-light: rgba(245,158,11,0.15);
+  --purple-light: rgba(139,92,246,0.15);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  font-family: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer components {
+
+  /* Glass card */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: var(--glass-shadow);
+  }
+
+  /* Section padding */
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-14 lg:py-20;
+  }
+
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 font-semibold px-7 py-3.5 rounded-2xl transition-all duration-300;
+    background: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+  }
+  .btn-primary:hover {
+    background: var(--btn-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+
+  /* Outline button */
+  .btn-outline {
+    @apply inline-flex items-center gap-2 font-semibold px-7 py-3.5 rounded-2xl transition-all duration-300 border-2;
+    border-color: var(--border);
+    color: var(--text-primary);
+    background: transparent;
+  }
+  .btn-outline:hover {
+    background: var(--bg-secondary);
+    border-color: rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+  }
+
+  /* Gold accent button */
+  .btn-gold {
+    @apply inline-flex items-center gap-2 font-semibold px-7 py-3.5 rounded-2xl transition-all duration-300;
+    background: var(--gold);
+    color: #fff;
+  }
+  .btn-gold:hover {
+    background: #b8860f;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212,160,23,0.3);
+  }
+
+  /* Badge pill */
+  .badge-pill {
+    @apply inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+  }
+
+  /* Premium card */
+  .premium-card {
+    @apply rounded-3xl p-5 transition-all duration-300;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .premium-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+    border-color: rgba(0,0,0,0.12);
+  }
+
+  /* Section headings */
+  .section-title {
+    @apply text-3xl lg:text-4xl xl:text-5xl font-bold;
+    color: var(--text-primary);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .section-subtitle {
+    @apply text-base lg:text-lg leading-relaxed mt-4 max-w-2xl;
+    color: var(--text-secondary);
+  }
+
+  /* Input */
+  .input-field {
+    @apply w-full px-4 py-3 rounded-2xl transition-all duration-200;
+    border: 1.5px solid var(--border);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+  }
+  .input-field:focus {
+    outline: none;
+    border-color: var(--royal-blue);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+  }
+  .input-field::placeholder {
+    color: var(--text-secondary);
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Icon wrapper variants */
+  .icon-blue   { background: var(--royal-blue-light); color: var(--royal-blue); }
+  .icon-gold   { background: var(--gold-light);        color: var(--gold); }
+  .icon-green  { background: var(--emerald-light);     color: var(--emerald); }
+  .icon-orange { background: var(--orange-light);      color: var(--orange); }
+  .icon-purple { background: var(--purple-light);      color: var(--purple); }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #FFFFFF; }
+::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #D1D5DB; }
+
+/* ── WhatsApp Pulse ── */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+.whatsapp-pulse::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #25D366;
+  animation: pulse-ring 2s ease-out infinite;
+  z-index: -1;
+}
+
+/* ── Counter animation ── */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.count-up {
+  animation: countUp 0.6s ease-out forwards;
+}
+
+/* ── Gradient text ── */
+.gradient-gold {
+  background: linear-gradient(135deg, #D4A017, #F59E0B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Section BG alternating ── */
+.bg-section-alt { background: var(--bg-secondary); }
+
+/* ── Testimonials slider ── */
+.testimonials-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ── Footer links ── */
+.footer-link {
+  color: var(--text-secondary);
+}
+.footer-link:hover {
+  color: var(--royal-blue);
+}
+
+/* ── Smooth fade in ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
