@@ -86,7 +86,7 @@ export default function AboutPage() {
               </div>
               <div className="p-5 rounded-2xl bg-amber-500/5 border border-amber-500/10 dark:bg-amber-500/5 dark:border-amber-500/20 max-w-2xl">
                 <p className="text-sm font-medium text-amber-800 dark:text-amber-300 leading-relaxed italic">
-                  "Helping clients turn aspirations into achievements through reliable financial solutions and professional guidance for more than two decades."
+                  &quot;Helping clients turn aspirations into achievements through reliable financial solutions and professional guidance for more than two decades.&quot;
                 </p>
               </div>
             </motion.div>
@@ -96,12 +96,14 @@ export default function AboutPage() {
           <div className="w-full">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Experience Highlights</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-              {[
-                { value: 25, suffix: "+", label: "Years of Trusted Expertise" },
-                { value: 1000, suffix: "+", label: "Satisfied Clients" },
-                { value: 7, suffix: "+", label: "Financial Services" },
-                { value: 2001, prefix: "Since ", label: "Building Long-Term Relationships" },
-              ].map((stat, i) => {
+              {(
+                [
+                  { value: 25, suffix: "+", label: "Years of Trusted Expertise" },
+                  { value: 1000, suffix: "+", label: "Satisfied Clients" },
+                  { value: 7, suffix: "+", label: "Financial Services" },
+                  { value: 2001, prefix: "Since ", label: "Building Long-Term Relationships" },
+                ] as { value: number; suffix?: string; prefix?: string; label: string }[]
+              ).map((stat, i) => {
                 return (
                   <motion.div 
                     key={stat.label}

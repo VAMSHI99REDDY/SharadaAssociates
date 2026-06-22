@@ -32,19 +32,24 @@ ALTER TABLE loan_applications ENABLE ROW LEVEL SECURITY;
 ALTER TABLE contact_messages ENABLE ROW LEVEL SECURITY;
 
 -- Policies: Allow insert for everyone (public form submissions)
+DROP POLICY IF EXISTS "Allow public insert" ON loan_applications;
 CREATE POLICY "Allow public insert" ON loan_applications
   FOR INSERT TO anon WITH CHECK (true);
 
-CREATE POLICY "Allow public insert" ON contact_messages
+DROP POLICY IF EXISTS "Allow public insert messages" ON contact_messages;
+CREATE POLICY "Allow public insert messages" ON contact_messages
   FOR INSERT TO anon WITH CHECK (true);
 
 -- Policies: Allow select/update for authenticated (admin)
+DROP POLICY IF EXISTS "Allow authenticated read" ON loan_applications;
 CREATE POLICY "Allow authenticated read" ON loan_applications
   FOR SELECT TO authenticated USING (true);
 
+DROP POLICY IF EXISTS "Allow authenticated update" ON loan_applications;
 CREATE POLICY "Allow authenticated update" ON loan_applications
   FOR UPDATE TO authenticated USING (true);
 
+DROP POLICY IF EXISTS "Allow authenticated read messages" ON contact_messages;
 CREATE POLICY "Allow authenticated read messages" ON contact_messages
   FOR SELECT TO authenticated USING (true);
 
