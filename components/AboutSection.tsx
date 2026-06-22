@@ -3,13 +3,13 @@ import { useEffect, useState, useRef } from "react";
 import { motion, useInView, animate } from "framer-motion";
 import { ShieldCheck, Award, Users2, Layers, History } from "lucide-react";
 
-function Counter({ value, suffix = "", prefix = "" }: { value: number; suffix?: string; prefix?: string }) {
-  const [count, setCount] = useState(0);
+function Counter({ value, suffix = "", prefix = "" }: { value: number | string; suffix?: string; prefix?: string }) {
+  const [count, setCount] = useState<number | string>(typeof value === "number" ? 0 : value);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   useEffect(() => {
-    if (isInView) {
+    if (typeof value === "number" && isInView) {
       const controls = animate(0, value, {
         duration: 2.0,
         ease: "easeOut",
@@ -22,7 +22,7 @@ function Counter({ value, suffix = "", prefix = "" }: { value: number; suffix?: 
   }, [isInView, value]);
 
   return (
-    <span ref={ref} className="font-bold text-3xl lg:text-4xl text-zinc-900 dark:text-white">
+    <span ref={ref} className="font-bold text-2xl lg:text-3xl text-zinc-900 dark:text-white block text-center w-full">
       {prefix}
       {count}
       {suffix}
@@ -32,10 +32,10 @@ function Counter({ value, suffix = "", prefix = "" }: { value: number; suffix?: 
 
 export default function AboutSection() {
   const stats = [
-    { value: 25, suffix: "+", label: "Years of Trusted Expertise", icon: Award, color: "text-blue-600 dark:text-blue-400" },
-    { value: 1000, suffix: "+", label: "Satisfied Clients", icon: Users2, color: "text-emerald-600 dark:text-emerald-400" },
-    { value: 7, suffix: "+", label: "Financial Services", icon: Layers, color: "text-amber-600 dark:text-amber-400" },
-    { value: 2001, prefix: "Since ", label: "Building Long-Term Relationships", icon: History, color: "text-purple-600 dark:text-purple-400" }
+    { value: 280, suffix: "+", label: "Students Successfully Funded", icon: Users2, color: "text-blue-600 dark:text-blue-400" },
+    { value: "Multiple", label: "USA, Canada, UK & Australia", icon: Award, color: "text-amber-600 dark:text-amber-400" },
+    { value: "Maximum", label: "Unsecured Funding", icon: Layers, color: "text-emerald-600 dark:text-emerald-400" },
+    { value: "Complete", label: "Guidance", icon: History, color: "text-purple-600 dark:text-purple-400" }
   ];
 
   return (
@@ -78,7 +78,7 @@ export default function AboutSection() {
           </motion.div>
 
           {/* Right Column - Stats Grid */}
-          <div className="lg:col-span-5 grid grid-cols-2 gap-5">
+          <div className="lg:col-span-5 grid grid-cols-2 gap-5 w-full">
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -86,16 +86,16 @@ export default function AboutSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="premium-card p-5 flex flex-col items-center text-center justify-center min-h-[160px] h-full group hover:scale-[1.02] transition-transform duration-300"
+                className="premium-card p-5 flex flex-col items-center text-center justify-center min-h-[160px] h-full w-full group hover:scale-[1.02] transition-transform duration-300"
               >
                 <div className={`w-11 h-11 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center mb-3 transition-transform duration-300 group-hover:scale-110`}>
                   <stat.icon className={`w-5 h-5 ${stat.color}`} />
                 </div>
-                <div className="space-y-1">
-                  <div className="flex justify-center items-baseline gap-0.5">
+                <div className="space-y-1 w-full flex flex-col items-center justify-center">
+                  <div className="w-full flex justify-center items-center text-center">
                     <Counter value={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
                   </div>
-                  <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                  <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 text-center w-full block">
                     {stat.label}
                   </p>
                 </div>
