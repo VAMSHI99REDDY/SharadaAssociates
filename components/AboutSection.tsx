@@ -93,7 +93,7 @@ export default function AboutSection() {
                 </div>
                 <div className="space-y-1 w-full flex flex-col items-center justify-center">
                   <div className="w-full flex justify-center items-center text-center">
-                    <Counter value={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
+                    <Counter value={stat.value} suffix={stat.suffix} />
                   </div>
                   <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 text-center w-full block">
                     {stat.label}
