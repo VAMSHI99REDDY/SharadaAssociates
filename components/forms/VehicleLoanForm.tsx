@@ -6,14 +6,14 @@ import { motion } from "framer-motion";
 import { CheckCircle, Loader2, AlertCircle, Phone, Mail, Globe } from "lucide-react";
 import { dbInsert } from "@/lib/supabase";
 
-const formatINR = (value) => {
+const formatINR = (value: string) => {
   const digits = value.replace(/\D/g, "");
   if (!digits) return "";
   const num = parseInt(digits, 10);
   return new Intl.NumberFormat('en-IN').format(num);
 };
 
-const parseINR = (value) => {
+const parseINR = (value: string) => {
   return value.replace(/\D/g, "");
 };
 
@@ -30,7 +30,7 @@ export default function VehicleLoanForm() {
     mode: "onChange"
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
     setLoading(true);
     try {
       const cleanData = {
@@ -93,7 +93,7 @@ export default function VehicleLoanForm() {
     );
   }
 
-  const ErrorMsg = ({ error }) => {
+  const ErrorMsg = ({ error }: { error: any }) => {
     if (!error) return null;
     return (
       <p className="text-red-500 text-sm mt-1.5 flex items-center gap-1">
