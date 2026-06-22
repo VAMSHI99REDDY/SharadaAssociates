@@ -5,7 +5,6 @@ import {
   Search, CheckCircle, XCircle, Clock, Download,
   Users, FileText, TrendingUp, RefreshCw, LogOut, Lock,
 } from "lucide-react";
-import { dbSelect, dbUpdate } from "@/lib/supabase";
 import type { LoanApplication } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
 
@@ -41,10 +40,13 @@ export default function AdminPage() {
   const fetchApplications = useCallback(async () => {
     setLoading(true);
     try {
-      const { data } = await dbSelect("loan_applications");
-      if (data && Array.isArray(data)) {
-        setApplications(data as LoanApplication[]);
-        setFiltered(data as LoanApplication[]);
+      const res = await fetch("/api/applications");
+      if (res.ok) {
+        const data = await res.json();
+        if (data && Array.isArray(data)) {
+          setApplications(data as LoanApplication[]);
+          setFiltered(data as LoanApplication[]);
+        }
       }
     } finally {
       setLoading(false);
@@ -82,10 +84,16 @@ export default function AdminPage() {
 
   const updateStatus = async (id: string, status: "approved" | "rejected") => {
     try {
-      await dbUpdate("loan_applications", id, { status });
-      setApplications((prev) =>
-        prev.map((a) => (a.id === id ? { ...a, status } : a))
-      );
+      const res = await fetch("/api/applications", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, status }),
+      });
+      if (res.ok) {
+        setApplications((prev) =>
+          prev.map((a) => (a.id === id ? { ...a, status } : a))
+        );
+      }
     } catch {
       // silent
     }
