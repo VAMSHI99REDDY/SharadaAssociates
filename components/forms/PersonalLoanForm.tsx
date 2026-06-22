@@ -75,7 +75,7 @@ export default function PersonalLoanForm() {
           </div>
           <div className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
             <Mail className="w-5 h-5 text-blue-500" />
-            <a href="mailto:info@sharadaassociates.com" className="hover:text-blue-500 transition-colors">info@sharadaassociates.com</a>
+            <a href="mailto:dilipreddy99@gmail.com" className="hover:text-blue-500 transition-colors">dilipreddy99@gmail.com</a>
           </div>
         </div>
 
