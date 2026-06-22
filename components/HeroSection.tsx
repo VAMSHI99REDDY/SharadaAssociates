@@ -56,8 +56,8 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 lg:pt-32 lg:pb-20 z-20 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-4 lg:pt-24 lg:pb-8 z-20 w-full">
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
 
           {/* ── Left content ── */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
@@ -66,7 +66,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full mb-6 mx-auto lg:mx-0"
+              className="flex items-center gap-2 text-[10px] sm:text-xs font-semibold px-3 py-1.5 rounded-full mb-4 mx-auto lg:mx-0"
               style={{
                 background: "#FEF3C7",
                 color: "#92400E",
@@ -85,7 +85,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 drop-shadow-md"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 drop-shadow-md"
               style={{ color: "#FFFFFF", letterSpacing: "-0.02em" }}
             >
               Expert Financial Guidance &{" "}
@@ -118,7 +118,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-base sm:text-lg leading-relaxed max-w-lg mb-8 font-medium"
+              className="text-sm sm:text-base leading-snug max-w-lg mb-6 font-medium"
               style={{ color: "#FFFFFF" }}
             >
               Sharada Associates provides National and International Education Loans, Admission Assistance, 
@@ -131,7 +131,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col sm:flex-row flex-wrap w-full sm:w-auto gap-4 mb-10 justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row flex-wrap w-full sm:w-auto gap-3 mb-6 justify-center lg:justify-start"
             >
               <a 
                 href="https://wa.me/919985111136" 
@@ -190,11 +190,11 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="relative w-full max-w-sm sm:max-w-md mx-auto mt-4 lg:mt-0 lg:ml-auto"
+            className="relative w-full max-w-[280px] sm:max-w-sm lg:max-w-md mx-auto mt-2 lg:mt-0 lg:ml-auto"
           >
-            <div className="relative p-4 sm:p-8 hover:scale-[1.02] transition-transform duration-500">
+            <div className="relative p-2 sm:p-4 hover:scale-[1.02] transition-transform duration-500">
               {/* Main card */}
-              <div className="glass-card p-6 sm:p-8 relative z-10 w-full shadow-2xl">
+              <div className="glass-card p-4 sm:p-6 relative z-10 w-full shadow-2xl">
                 <div className="flex items-center gap-3 mb-6">
                   <div
                     className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
