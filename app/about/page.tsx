@@ -48,12 +48,12 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="bg-gradient-to-br from-zinc-900 to-zinc-950 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-3xl lg:text-5xl font-bold mb-4">
-            About SharadaAssociates
-          </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-zinc-400 text-lg max-w-2xl mx-auto">
-            Providing Expert Financial Guidance & Comprehensive Loan Solutions since our founding.
-          </motion.p>
+            <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-3xl lg:text-5xl font-bold mb-4">
+              Our Story
+            </motion.h1>
+            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-zinc-400 text-lg max-w-2xl mx-auto">
+              For over 25 years, Sharada Associates has been helping students, families, entrepreneurs, and businesses secure education loans, business funding, property loans, vehicle financing, and other financial solutions with confidence. Our commitment to transparency, personalized guidance, and customer satisfaction has made us a trusted financial partner for generations.
+            </motion.p>
         </div>
       </section>
 
@@ -86,7 +86,7 @@ export default function AboutPage() {
               </div>
               <div className="p-5 rounded-2xl bg-amber-500/5 border border-amber-500/10 dark:bg-amber-500/5 dark:border-amber-500/20 max-w-2xl">
                 <p className="text-sm font-medium text-amber-800 dark:text-amber-300 leading-relaxed italic">
-                  &quot;Helping clients turn aspirations into achievements through reliable financial solutions and professional guidance for more than two decades.&quot;
+                  "Helping clients turn aspirations into achievements through reliable financial solutions and professional guidance for more than two decades."
                 </p>
               </div>
             </motion.div>
