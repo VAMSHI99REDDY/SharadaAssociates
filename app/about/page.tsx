@@ -97,7 +97,7 @@ export default function AboutPage() {
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Experience Highlights</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
               {[
-                { value: 25, suffix: "+", label: "Years of Trusted Expertise" },
+                { value: 10, suffix: "+", label: "Years of Combined Financial Consultancy Experience" },
                 { value: 1000, suffix: "+", label: "Satisfied Clients" },
                 { value: 7, suffix: "+", label: "Financial Services" },
                 { value: 2001, prefix: "Since ", label: "Building Long-Term Relationships" },
