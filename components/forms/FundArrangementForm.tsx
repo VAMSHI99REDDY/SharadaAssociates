@@ -20,7 +20,7 @@ const parseINR = (value: string) => {
 const nameRegex = /^[a-zA-Z\s]+$/;
 const phoneRegex = /^\d{10}$/;
 
-export default function MovieFinancingForm() {
+export default function FundArrangementForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -37,13 +37,11 @@ export default function MovieFinancingForm() {
 
 
 
-      if (cleanData.estimatedBudget) cleanData.estimatedBudget = parseINR(cleanData.estimatedBudget);
-
       const { error } = await dbInsert("loan_applications", {
         customer_name: cleanData.fullName,
         phone_number: cleanData.phone,
         email: cleanData.email,
-        loan_type: "Movie Financing",
+        loan_type: "Fund Arrangement",
         loan_amount: cleanData.loanAmount || "0",
         status: "pending",
         form_data: cleanData,
@@ -63,7 +61,7 @@ export default function MovieFinancingForm() {
         <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
           <span className="text-4xl">🎉</span>
         </div>
-        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">Movie Financing Application Submitted Successfully</h3>
+        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">Fund Arrangement Application Submitted Successfully</h3>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 font-medium">Thank you for choosing Sharada Associates.</p>
         <p className="text-gray-500 dark:text-gray-400 mb-8 max-w-md mx-auto">
           Our team will review your application and contact you shortly.
@@ -164,51 +162,22 @@ export default function MovieFinancingForm() {
         {/* SPECIFIC FIELDS */}
         
         <div>
-          <label className="label-text">Production House Name *</label>
+          <label className="label-text">Purpose of Funds *</label>
           <input
-            {...register("productionHouseName", { required: "Required" })}
-            placeholder="Enter production house name" 
-            className={"input-field rounded-xl " + (errors.productionHouseName ? "border-red-500 focus:ring-red-500" : "focus:border-green-500 focus:ring-green-500/20")} 
+            {...register("purposeOfFunds", { required: "Required" })}
+            placeholder="Enter purpose of funds" 
+            className={"input-field rounded-xl " + (errors.purposeOfFunds ? "border-red-500 focus:ring-red-500" : "focus:border-green-500 focus:ring-green-500/20")} 
           />
-          <ErrorMsg error={errors.productionHouseName} />
+          <ErrorMsg error={errors.purposeOfFunds} />
         </div>
         <div>
-          <label className="label-text">Project Name *</label>
+          <label className="label-text">Description *</label>
           <input
-            {...register("projectName", { required: "Required" })}
-            placeholder="Enter project name" 
-            className={"input-field rounded-xl " + (errors.projectName ? "border-red-500 focus:ring-red-500" : "focus:border-green-500 focus:ring-green-500/20")} 
+            {...register("description", { required: "Required" })}
+            placeholder="Enter description" 
+            className={"input-field rounded-xl " + (errors.description ? "border-red-500 focus:ring-red-500" : "focus:border-green-500 focus:ring-green-500/20")} 
           />
-          <ErrorMsg error={errors.projectName} />
-        </div>
-        <div>
-          <label className="label-text">Movie Genre *</label>
-          <input
-            {...register("movieGenre", { required: "Required" })}
-            placeholder="Enter movie genre" 
-            className={"input-field rounded-xl " + (errors.movieGenre ? "border-red-500 focus:ring-red-500" : "focus:border-green-500 focus:ring-green-500/20")} 
-          />
-          <ErrorMsg error={errors.movieGenre} />
-        </div>
-        <div>
-          <label className="label-text">Estimated Budget (₹) *</label>
-          <Controller
-            name="estimatedBudget"
-            control={control}
-            rules={{ required: "Required" }}
-            render={({ field: f }) => (
-              <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-medium">₹</span>
-                <input
-                  {...f}
-                  onChange={(e) => f.onChange(formatINR(e.target.value))}
-                  placeholder="e.g. 5,00,000"
-                  className={"input-field pl-9 rounded-xl " + (errors.estimatedBudget ? "border-red-500 focus:ring-red-500" : "focus:border-green-500 focus:ring-green-500/20")}
-                />
-              </div>
-            )}
-          />
-          <ErrorMsg error={errors.estimatedBudget} />
+          <ErrorMsg error={errors.description} />
         </div>
       </div>
 
@@ -221,7 +190,7 @@ export default function MovieFinancingForm() {
           {loading ? (
             <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</>
           ) : (
-            <>Apply for Movie Financing</>
+            <>Apply for Fund Arrangement</>
           )}
         </button>
       </div>

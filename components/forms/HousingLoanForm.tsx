@@ -19,8 +19,6 @@ const parseINR = (value: string) => {
 
 const nameRegex = /^[a-zA-Z\s]+$/;
 const phoneRegex = /^\d{10}$/;
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const businessNameRegex = /^[a-zA-Z0-9\s&.,]+$/;
 
 export default function HousingLoanForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -33,17 +31,19 @@ export default function HousingLoanForm() {
   const onSubmit = async (data: any) => {
     setLoading(true);
     try {
-      const cleanData = {
-        ...data,
-        loanAmount: parseINR(data.loanAmount)
-      };
+      // Parse any currency fields back to numbers
+      const cleanData = { ...data };
+      if (cleanData.loanAmount) cleanData.loanAmount = parseINR(cleanData.loanAmount);
+
+      if (cleanData.propertyValue) cleanData.propertyValue = parseINR(cleanData.propertyValue);
+
 
       const { error } = await dbInsert("loan_applications", {
         customer_name: cleanData.fullName,
         phone_number: cleanData.phone,
         email: cleanData.email,
         loan_type: "Housing Loan",
-        loan_amount: cleanData.loanAmount,
+        loan_amount: cleanData.loanAmount || "0",
         status: "pending",
         form_data: cleanData,
         date_applied: new Date().toISOString(),
@@ -62,7 +62,7 @@ export default function HousingLoanForm() {
         <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
           <span className="text-4xl">🎉</span>
         </div>
-        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">Application Submitted Successfully</h3>
+        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">Housing Loan Application Submitted Successfully</h3>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 font-medium">Thank you for choosing Sharada Associates.</p>
         <p className="text-gray-500 dark:text-gray-400 mb-8 max-w-md mx-auto">
           Our team will review your application and contact you shortly.
@@ -73,13 +73,9 @@ export default function HousingLoanForm() {
             <Phone className="w-5 h-5 text-blue-500" />
             <span>+91 94943 38166</span>
           </div>
-          <div className="flex items-center gap-3 mb-4 text-gray-600 dark:text-gray-300">
+          <div className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
             <Mail className="w-5 h-5 text-blue-500" />
             <a href="mailto:info@sharadaassociates.com" className="hover:text-blue-500 transition-colors">info@sharadaassociates.com</a>
-          </div>
-          <div className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
-            <Globe className="w-5 h-5 text-blue-500" />
-            <a href="https://sharadaassociates.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors">https://sharadaassociates.com</a>
           </div>
         </div>
 
@@ -104,14 +100,15 @@ export default function HousingLoanForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        {/* COMMON FIELDS */}
         <div>
           <label className="label-text">Full Name *</label>
           <input
             {...register("fullName", { 
-              required: "Please enter a valid name using letters only.", 
-              minLength: { value: 3, message: "Minimum 3 characters required." },
-              pattern: { value: nameRegex, message: "Please enter a valid name using letters only." }
+              required: "Letters and spaces only.", 
+              pattern: { value: nameRegex, message: "Letters and spaces only." }
             })}
             placeholder="Your full name" 
             className={"input-field rounded-xl " + (errors.fullName ? "border-red-500 focus:ring-red-500" : "focus:border-green-500 focus:ring-green-500/20")} 
@@ -123,22 +120,19 @@ export default function HousingLoanForm() {
           <label className="label-text">Phone Number *</label>
           <input
             {...register("phone", { 
-              required: "Please enter a valid 10-digit mobile number.", 
-              pattern: { value: phoneRegex, message: "Please enter a valid 10-digit mobile number." }
+              required: "Exactly 10 digits.", 
+              pattern: { value: phoneRegex, message: "Exactly 10 digits." }
             })}
-            placeholder="+91 XXXXX XXXXX" 
+            placeholder="10 digit number" 
             className={"input-field rounded-xl " + (errors.phone ? "border-red-500 focus:ring-red-500" : "focus:border-green-500 focus:ring-green-500/20")} 
           />
           <ErrorMsg error={errors.phone} />
         </div>
 
-        <div className="md:col-span-2">
+        <div>
           <label className="label-text">Email Address *</label>
           <input
-            {...register("email", { 
-              required: "Please enter a valid email address.", 
-              pattern: { value: emailRegex, message: "Please enter a valid email address." }
-            })}
+            {...register("email", { required: "Valid email required." })}
             type="email" placeholder="your@email.com" 
             className={"input-field rounded-xl " + (errors.email ? "border-red-500 focus:ring-red-500" : "focus:border-green-500 focus:ring-green-500/20")} 
           />
@@ -146,62 +140,18 @@ export default function HousingLoanForm() {
         </div>
 
         <div>
-          <label className="label-text">Business Name *</label>
-          <input
-            {...register("businessName", { 
-              required: "Please enter a valid business name.",
-              minLength: { value: 3, message: "Minimum 3 characters required." },
-              pattern: { value: businessNameRegex, message: "Please enter a valid business name." }
-            })}
-            placeholder="Your business name" 
-            className={"input-field rounded-xl " + (errors.businessName ? "border-red-500 focus:ring-red-500" : "focus:border-green-500 focus:ring-green-500/20")} 
-          />
-          <ErrorMsg error={errors.businessName} />
-        </div>
-
-        <div>
-          <label className="label-text">Business Type *</label>
-          <select 
-            {...register("businessType", { required: "Please select a business type." })} 
-            className={"input-field rounded-xl " + (errors.businessType ? "border-red-500 focus:ring-red-500" : "focus:border-green-500 focus:ring-green-500/20")}
-          >
-            <option value="">Select type</option>
-            <option>Manufacturing</option>
-            <option>Retail</option>
-            <option>IT Services</option>
-            <option>Construction</option>
-            <option>Agriculture</option>
-            <option>Film Production</option>
-            <option>Education Services</option>
-            <option>Transport</option>
-            <option>Healthcare</option>
-            <option>Other</option>
-          </select>
-          <ErrorMsg error={errors.businessType} />
-        </div>
-
-        <div className="md:col-span-2">
-          <label className="label-text">Required Loan Amount (₹) *</label>
+          <label className="label-text">Required Amount (₹) *</label>
           <Controller
             name="loanAmount"
             control={control}
-            rules={{
-              required: "Please enter loan amount using numbers only.",
-              validate: (val) => {
-                const num = parseInt(parseINR(val), 10);
-                if (isNaN(num)) return "Please enter loan amount using numbers only.";
-                if (num < 100000) return "Minimum loan amount is ₹1,00,000.";
-                if (num > 50000000) return "Maximum loan amount is ₹5,00,00,000.";
-                return true;
-              }
-            }}
+            rules={{ required: "Required" }}
             render={({ field }) => (
               <div className="relative">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-medium">₹</span>
                 <input
                   {...field}
                   onChange={(e) => field.onChange(formatINR(e.target.value))}
-                  placeholder="25,00,000"
+                  placeholder="e.g. 5,00,000"
                   className={"input-field pl-9 rounded-xl " + (errors.loanAmount ? "border-red-500 focus:ring-red-500" : "focus:border-green-500 focus:ring-green-500/20")}
                 />
               </div>
@@ -209,18 +159,59 @@ export default function HousingLoanForm() {
           />
           <ErrorMsg error={errors.loanAmount} />
         </div>
+
+        {/* SPECIFIC FIELDS */}
+        
+        <div>
+          <label className="label-text">Property Type *</label>
+          <input
+            {...register("propertyType", { required: "Required" })}
+            placeholder="Enter property type" 
+            className={"input-field rounded-xl " + (errors.propertyType ? "border-red-500 focus:ring-red-500" : "focus:border-green-500 focus:ring-green-500/20")} 
+          />
+          <ErrorMsg error={errors.propertyType} />
+        </div>
+        <div>
+          <label className="label-text">Property Value (₹) *</label>
+          <Controller
+            name="propertyValue"
+            control={control}
+            rules={{ required: "Required" }}
+            render={({ field: f }) => (
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-medium">₹</span>
+                <input
+                  {...f}
+                  onChange={(e) => f.onChange(formatINR(e.target.value))}
+                  placeholder="e.g. 5,00,000"
+                  className={"input-field pl-9 rounded-xl " + (errors.propertyValue ? "border-red-500 focus:ring-red-500" : "focus:border-green-500 focus:ring-green-500/20")}
+                />
+              </div>
+            )}
+          />
+          <ErrorMsg error={errors.propertyValue} />
+        </div>
+        <div>
+          <label className="label-text">Property Location *</label>
+          <input
+            {...register("propertyLocation", { required: "Required" })}
+            placeholder="Enter property location" 
+            className={"input-field rounded-xl " + (errors.propertyLocation ? "border-red-500 focus:ring-red-500" : "focus:border-green-500 focus:ring-green-500/20")} 
+          />
+          <ErrorMsg error={errors.propertyLocation} />
+        </div>
       </div>
 
       <div className="pt-4 border-t border-gray-100 dark:border-gray-800 mt-8">
         <button
           type="submit"
           disabled={loading}
-          className="w-full btn-primary flex items-center justify-center gap-2 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+          className="w-full lg:w-auto px-8 btn-primary flex items-center justify-center gap-2 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all disabled:opacity-70 disabled:cursor-not-allowed mx-auto"
         >
           {loading ? (
             <><Loader2 className="w-5 h-5 animate-spin" /> Submitting...</>
           ) : (
-            <>Submit Application</>
+            <>Apply for Housing Loan</>
           )}
         </button>
       </div>

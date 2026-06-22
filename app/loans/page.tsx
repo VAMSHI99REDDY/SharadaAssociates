@@ -10,6 +10,8 @@ import VehicleLoanForm from "@/components/forms/VehicleLoanForm";
 import HousingLoanForm from "@/components/forms/HousingLoanForm";
 import MovieFinancingForm from "@/components/forms/MovieFinancingForm";
 import PersonalLoanForm from "@/components/forms/PersonalLoanForm";
+import FundArrangementForm from "@/components/forms/FundArrangementForm";
+import AdmissionAssistanceForm from "@/components/forms/AdmissionAssistanceForm";
 
 const studyCountries = [
   { name: "USA", flag: "🇺🇸" },
@@ -30,8 +32,8 @@ const otherLoans = [
   { id: "housing", icon: Home, title: "Housing Loans", description: "Build or buy your dream home affordably.", color: "from-purple-500/10 to-transparent", borderHover: "hover:border-purple-500/50", form: HousingLoanForm },
   { id: "movie", icon: Film, title: "Movie Financing", description: "Bring your cinematic vision to life with reliable funding.", color: "from-rose-500/10 to-transparent", borderHover: "hover:border-rose-500/50", form: MovieFinancingForm },
   { id: "personal", icon: User, title: "Personal Loans", description: "Flexible personal financing for every need.", color: "from-amber-500/10 to-transparent", borderHover: "hover:border-amber-500/50", form: PersonalLoanForm },
-  { id: "fund", icon: Wallet, title: "Fund Arrangement", description: "Professional assistance for financial fund arrangements.", color: "from-cyan-500/10 to-transparent", borderHover: "hover:border-cyan-500/50", form: BusinessLoanForm },
-  { id: "admission", icon: GraduationCap, title: "Admission Assistance", description: "Complete support for university admissions.", color: "from-indigo-500/10 to-transparent", borderHover: "hover:border-indigo-500/50", form: EducationLoanForm },
+  { id: "fund", icon: Wallet, title: "Fund Arrangement", description: "Professional assistance for financial fund arrangements.", color: "from-cyan-500/10 to-transparent", borderHover: "hover:border-cyan-500/50", form: FundArrangementForm },
+  { id: "admission", icon: GraduationCap, title: "Admission Assistance", description: "Complete support for university admissions.", color: "from-indigo-500/10 to-transparent", borderHover: "hover:border-indigo-500/50", form: AdmissionAssistanceForm },
 ];
 
 type LoanType = typeof otherLoans[0] | null;
