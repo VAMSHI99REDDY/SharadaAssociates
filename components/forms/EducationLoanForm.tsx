@@ -78,7 +78,6 @@ export default function EducationLoanForm() {
     const isValid = await trigger(fieldsToValidate);
     if (isValid) {
       setCurrentStep(s => s + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       // Auto-scroll to first error
       const firstErrorElement = document.querySelector('.error-ring');
@@ -90,7 +89,6 @@ export default function EducationLoanForm() {
 
   const prevStep = () => {
     setCurrentStep(s => s - 1);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const onSubmit = async (data: FormData) => {
