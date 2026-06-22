@@ -74,7 +74,7 @@ export default function AdminPage() {
   }, [search, loanFilter, statusFilter, applications]);
 
   const handleLogin = () => {
-    if (password === "sharadha_admin_2024" || password === "admin") {
+    if (password === "Sharadaassociates2026" || password === "Shareddy@1136") {
       setAuthenticated(true);
       setAuthError("");
     } else {
