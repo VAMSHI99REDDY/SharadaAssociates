@@ -58,18 +58,21 @@ export default function AboutPage() {
       </section>
 
       {/* Story */}
-      {/* Story */}
       <section className="section-padding bg-white dark:bg-gray-950">
-        <div className="container-max">
-          <div className="grid lg:grid-cols-12 gap-16 items-center">
-            
-            {/* Left Column - Content */}
+        <div className="container-max space-y-12">
+          
+          {/* Top Story Content */}
+          <div className="max-w-4xl">
             <motion.div 
-              initial={{ opacity: 0, x: -30 }} 
-              whileInView={{ opacity: 1, x: 0 }} 
+              initial={{ opacity: 0, y: 20 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true }}
-              className="lg:col-span-7 space-y-6"
+              className="space-y-6"
             >
+              <span className="badge-pill inline-flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                Our Story
+              </span>
               <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-white">
                 A Legacy of Trust <span className="gradient-gold">Since 2001</span>
               </h2>
@@ -81,46 +84,49 @@ export default function AboutPage() {
                   Our commitment to transparency, personalized guidance, and customer satisfaction has made us a trusted financial partner for generations.
                 </p>
               </div>
-              <div className="p-5 rounded-2xl bg-amber-500/5 border border-amber-500/10 dark:bg-amber-500/5 dark:border-amber-500/20">
+              <div className="p-5 rounded-2xl bg-amber-500/5 border border-amber-500/10 dark:bg-amber-500/5 dark:border-amber-500/20 max-w-2xl">
                 <p className="text-sm font-medium text-amber-800 dark:text-amber-300 leading-relaxed italic">
                   &quot;Helping clients turn aspirations into achievements through reliable financial solutions and professional guidance for more than two decades.&quot;
                 </p>
               </div>
             </motion.div>
-
-            {/* Right Column - Stats Grid with Counter */}
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }} 
-              whileInView={{ opacity: 1, x: 0 }} 
-              viewport={{ once: true }}
-              className="lg:col-span-5 w-full"
-            >
-              <div className="grid grid-cols-2 gap-5 w-full">
-                {[
-                  { value: 25, suffix: "+", label: "Years of Trusted Expertise", color: "text-blue-600 dark:text-blue-400" },
-                  { value: 1000, suffix: "+", label: "Satisfied Clients", color: "text-emerald-600 dark:text-emerald-400" },
-                  { value: 7, suffix: "+", label: "Financial Services", color: "text-amber-600 dark:text-amber-400" },
-                  { value: 2001, prefix: "Since ", label: "Building Long-Term Relationships", color: "text-purple-600 dark:text-purple-400" },
-                ].map((stat, i) => {
-                  return (
-                    <div key={stat.label} className="premium-card p-5 flex flex-col items-center text-center justify-center min-h-[150px] w-full">
-                      <div className="space-y-1 w-full flex flex-col items-center justify-center">
-                        <div className="w-full flex justify-center items-center text-center">
-                          <Counter value={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
-                        </div>
-                        <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 text-center w-full block mt-2">
-                          {stat.label}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </motion.div>
-
           </div>
+
+          {/* Bottom - Experience Highlights Stats Grid */}
+          <div className="w-full">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Experience Highlights</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+              {[
+                { value: 25, suffix: "+", label: "Years of Trusted Expertise" },
+                { value: 1000, suffix: "+", label: "Satisfied Clients" },
+                { value: 7, suffix: "+", label: "Financial Services" },
+                { value: 2001, prefix: "Since ", label: "Building Long-Term Relationships" },
+              ].map((stat, i) => {
+                return (
+                  <motion.div 
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    className="premium-card p-6 flex flex-col items-center text-center justify-center min-h-[160px] h-full w-full group hover:scale-[1.02] transition-transform duration-300"
+                  >
+                    <div className="space-y-2 w-full flex flex-col items-center justify-center">
+                      <div className="w-full flex justify-center items-center text-center">
+                        <Counter value={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
+                      </div>
+                      <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 text-center w-full block">
+                        {stat.label}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
         </div>
-      </section>n>
+      </section>
 
       {/* Founder Section */}
       <section className="section-padding bg-white dark:bg-gray-950">
