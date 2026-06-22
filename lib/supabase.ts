@@ -102,3 +102,29 @@ export type ContactMessage = {
   message: string;
   created_at?: string;
 };
+
+export type ContactInquiry = {
+  id?: string;
+  full_name: string;
+  phone_number: string;
+  email: string;
+  country_interested: string;
+  message: string;
+  status?: "New" | "Contacted" | "Closed";
+  created_at?: string;
+};
+
+export async function dbDelete(table: string, id: string) {
+  const client = getClient();
+  if (!client) {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem(table);
+      let list = stored ? JSON.parse(stored) : [];
+      list = list.filter((item: { id: string }) => item.id !== id);
+      localStorage.setItem(table, JSON.stringify(list));
+      return { error: null };
+    }
+    return { error: new Error("Window not defined") };
+  }
+  return client.from(table).delete().eq("id", id);
+}

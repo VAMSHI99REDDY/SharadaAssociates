@@ -3,13 +3,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { Phone, Mail, MapPin, Clock, CheckCircle, Loader2, Send, User, GraduationCap } from "lucide-react";
-import { dbInsert } from "@/lib/supabase";
 
 type ContactForm = {
-  name: string;
-  phone: string;
+  full_name: string;
+  phone_number: string;
   email: string;
-  country: string;
+  country_interested: string;
   message: string;
 };
 
@@ -51,22 +50,31 @@ const contactInfo = [
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { register, handleSubmit, formState: { errors } } = useForm<ContactForm>();
+  const [serverError, setServerError] = useState("");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ContactForm>();
 
   const onSubmit = async (data: ContactForm) => {
     setLoading(true);
+    setServerError("");
     try {
-      await dbInsert("contact_messages", {
-        name: data.name,
-        phone: data.phone,
-        email: data.email,
-        country: data.country,
-        message: data.message,
-        created_at: new Date().toISOString(),
+      const res = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
       });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || "Submission failed");
+      }
       setSubmitted(true);
-    } catch {
-      setSubmitted(true);
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : "Something went wrong. Please try again.";
+      setServerError(msg);
     } finally {
       setLoading(false);
     }
@@ -121,11 +129,11 @@ export default function ContactPage() {
                 ))}
               </div>
 
-              {/* Map placeholder */}
+              {/* Map */}
               <div id="map" className="relative rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 shadow-lg group">
                 <div className="p-4 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 relative z-10">
                   <h3 className="font-bold text-lg text-gray-900 dark:text-white flex items-center gap-2">
-                    <MapPin className="w-5 h-5 text-[#D4A017]" /> 
+                    <MapPin className="w-5 h-5 text-[#D4A017]" />
                     <a href="https://maps.app.goo.gl/nE4s72eKLGd3F63J9" target="_blank" rel="noopener noreferrer" className="hover:text-[#D4A017] transition-colors hover:underline">
                       Find Us On Map
                     </a>
@@ -151,42 +159,113 @@ export default function ContactPage() {
 
                 {submitted ? (
                   <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-12">
-                    <CheckCircle className="w-16 h-16 text-zinc-800 dark:text-zinc-200 mx-auto mb-4" />
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Message Sent!</h3>
-                    <p className="text-gray-500">Thank you for reaching out. We&apos;ll get back to you within 24 hours.</p>
+                    <div className="text-5xl mb-4">🎉</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Inquiry Submitted Successfully</h3>
+                    <p className="text-gray-500 dark:text-gray-400 leading-relaxed">
+                      Thank you for contacting Sharada Associates.<br />
+                      Our team will review your message and contact you shortly.
+                    </p>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+                    {/* Full Name */}
                     <div>
                       <label className="label-text">Full Name *</label>
-                      <input {...register("name", { required: true })} placeholder="Your full name" className="input-field" />
-                      {errors.name && <p className="text-red-500 text-xs mt-1">Required</p>}
+                      <input
+                        {...register("full_name", {
+                          required: "Full name is required",
+                          pattern: {
+                            value: /^[a-zA-Z\s]+$/,
+                            message: "Name can only contain letters and spaces",
+                          },
+                        })}
+                        placeholder="Your full name"
+                        className="input-field"
+                      />
+                      {errors.full_name && <p className="text-red-500 text-xs mt-1">{errors.full_name.message}</p>}
                     </div>
+
+                    {/* Phone Number */}
                     <div>
                       <label className="label-text">Phone Number *</label>
-                      <input {...register("phone", { required: true })} placeholder="+91 XXXXX XXXXX" className="input-field" />
-                      {errors.phone && <p className="text-red-500 text-xs mt-1">Required</p>}
+                      <input
+                        {...register("phone_number", {
+                          required: "Phone number is required",
+                          pattern: {
+                            value: /^\d{10}$/,
+                            message: "Enter a valid 10-digit phone number",
+                          },
+                        })}
+                        placeholder="+91 XXXXX XXXXX"
+                        className="input-field"
+                        type="tel"
+                      />
+                      {errors.phone_number && <p className="text-red-500 text-xs mt-1">{errors.phone_number.message}</p>}
                     </div>
+
+                    {/* Email */}
                     <div>
                       <label className="label-text">Email Address *</label>
-                      <input {...register("email", { required: true })} type="email" placeholder="your@email.com" className="input-field" />
-                      {errors.email && <p className="text-red-500 text-xs mt-1">Required</p>}
+                      <input
+                        {...register("email", {
+                          required: "Email is required",
+                          pattern: {
+                            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                            message: "Enter a valid email address",
+                          },
+                        })}
+                        type="email"
+                        placeholder="your@email.com"
+                        className="input-field"
+                      />
+                      {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                     </div>
+
+                    {/* Country Interested In */}
                     <div>
                       <label className="label-text">Country Interested In *</label>
-                      <input {...register("country", { required: true })} placeholder="e.g. USA, UK, Canada" className="input-field" />
-                      {errors.country && <p className="text-red-500 text-xs mt-1">Required</p>}
+                      <input
+                        {...register("country_interested", {
+                          required: "Country is required",
+                          pattern: {
+                            value: /^[a-zA-Z,\s]+$/,
+                            message: "Only letters and commas allowed (e.g. USA, Canada)",
+                          },
+                        })}
+                        placeholder="e.g. USA, UK, Canada"
+                        className="input-field"
+                      />
+                      {errors.country_interested && <p className="text-red-500 text-xs mt-1">{errors.country_interested.message}</p>}
                     </div>
+
+                    {/* Message */}
                     <div>
                       <label className="label-text">Message *</label>
                       <textarea
-                        {...register("message", { required: true })}
+                        {...register("message", {
+                          required: "Message is required",
+                          minLength: {
+                            value: 20,
+                            message: "Message must be at least 20 characters",
+                          },
+                          maxLength: {
+                            value: 1000,
+                            message: "Message cannot exceed 1000 characters",
+                          },
+                        })}
                         rows={5}
                         placeholder="Tell us how we can help you..."
                         className="input-field resize-none"
                       />
-                      {errors.message && <p className="text-red-500 text-xs mt-1">Required</p>}
+                      {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
                     </div>
+
+                    {serverError && (
+                      <p className="text-red-500 text-sm bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg px-3 py-2">
+                        {serverError}
+                      </p>
+                    )}
+
                     <button type="submit" disabled={loading} className="w-full btn-primary justify-center py-4">
                       {loading ? (
                         <><Loader2 className="w-5 h-5 animate-spin" /> Sending...</>

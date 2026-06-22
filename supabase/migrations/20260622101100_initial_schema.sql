@@ -57,3 +57,42 @@ CREATE POLICY "Allow authenticated read messages" ON contact_messages
 CREATE INDEX IF NOT EXISTS idx_loan_applications_status ON loan_applications(status);
 CREATE INDEX IF NOT EXISTS idx_loan_applications_loan_type ON loan_applications(loan_type);
 CREATE INDEX IF NOT EXISTS idx_loan_applications_date ON loan_applications(date_applied DESC);
+
+-- ============================================================
+-- Contact Inquiries Table (from Contact Us form)
+-- ============================================================
+CREATE TABLE IF NOT EXISTS contact_inquiries (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  full_name TEXT NOT NULL,
+  phone_number TEXT NOT NULL,
+  email TEXT NOT NULL,
+  country_interested TEXT NOT NULL,
+  message TEXT NOT NULL,
+  status TEXT DEFAULT 'New' CHECK (status IN ('New', 'Contacted', 'Closed')),
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Enable Row Level Security
+ALTER TABLE contact_inquiries ENABLE ROW LEVEL SECURITY;
+
+-- Public can insert (contact form submissions)
+DROP POLICY IF EXISTS "Allow public insert inquiries" ON contact_inquiries;
+CREATE POLICY "Allow public insert inquiries" ON contact_inquiries
+  FOR INSERT TO anon WITH CHECK (true);
+
+-- Authenticated (admin) can read, update, delete
+DROP POLICY IF EXISTS "Allow authenticated read inquiries" ON contact_inquiries;
+CREATE POLICY "Allow authenticated read inquiries" ON contact_inquiries
+  FOR SELECT TO authenticated USING (true);
+
+DROP POLICY IF EXISTS "Allow authenticated update inquiries" ON contact_inquiries;
+CREATE POLICY "Allow authenticated update inquiries" ON contact_inquiries
+  FOR UPDATE TO authenticated USING (true);
+
+DROP POLICY IF EXISTS "Allow authenticated delete inquiries" ON contact_inquiries;
+CREATE POLICY "Allow authenticated delete inquiries" ON contact_inquiries
+  FOR DELETE TO authenticated USING (true);
+
+-- Index for performance
+CREATE INDEX IF NOT EXISTS idx_contact_inquiries_created ON contact_inquiries(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_contact_inquiries_status ON contact_inquiries(status);
