@@ -1,9 +1,37 @@
 "use client";
-import { motion } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import { motion, useInView, animate } from "framer-motion";
 import Image from "next/image";
 import { Target, Eye, Users, Award, Shield, TrendingUp } from "lucide-react";
 import Testimonials from "@/components/Testimonials";
 import founderImg from "@/components/images/Founder.jpeg";
+
+function Counter({ value, suffix = "", prefix = "" }: { value: number | string; suffix?: string; prefix?: string }) {
+  const [count, setCount] = useState<number | string>(typeof value === "number" ? 0 : value);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (typeof value === "number" && isInView) {
+      const controls = animate(0, value, {
+        duration: 2.0,
+        ease: "easeOut",
+        onUpdate(latest) {
+          setCount(Math.round(latest));
+        }
+      });
+      return () => controls.stop();
+    }
+  }, [isInView, value]);
+
+  return (
+    <span ref={ref} className="font-bold text-2xl lg:text-3xl text-zinc-900 dark:text-white block text-center w-full">
+      {prefix}
+      {count}
+      {suffix}
+    </span>
+  );
+}
 
 const values = [
   { icon: Shield, title: "Trust & Transparency", description: "No hidden fees. Clear communication at every step of your loan journey." },
@@ -30,51 +58,69 @@ export default function AboutPage() {
       </section>
 
       {/* Story */}
+      {/* Story */}
       <section className="section-padding bg-white dark:bg-gray-950">
         <div className="container-max">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Our Story</h2>
-              <div className="space-y-4 text-gray-500 dark:text-gray-400 leading-relaxed">
+          <div className="grid lg:grid-cols-12 gap-16 items-center">
+            
+            {/* Left Column - Content */}
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }} 
+              whileInView={{ opacity: 1, x: 0 }} 
+              viewport={{ once: true }}
+              className="lg:col-span-7 space-y-6"
+            >
+              <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-white">
+                A Legacy of Trust <span className="gradient-gold">Since 2001</span>
+              </h2>
+              <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed text-base">
                 <p>
-                  SharadaAssociates was founded with a singular mission: to make financial services
-                  accessible, transparent, and stress-free for every Indian family. We started
-                  specializing in education loans because we believed that no student should have to
-                  give up their dream of studying abroad due to financial constraints.
+                  For over 25 years, Sharada Associates has been helping students, families, entrepreneurs, and businesses secure education loans, business funding, property loans, vehicle financing, and other financial solutions with confidence.
                 </p>
                 <p>
-                  Today, we have successfully funded over 280+ students and helped families navigate the complex world
-                  of educational financing. Our partnerships with leading public and private sector
-                  banks and NBFCs allow us to offer competitive interest rates, flexible repayment options, and
-                  both collateral and non-collateral loan products.
+                  Our commitment to transparency, personalized guidance, and customer satisfaction has made us a trusted financial partner for generations.
                 </p>
-                <p>
-                  Beyond education, we have expanded our services to cover business loans, vehicle
-                  loans, housing loans, movie financing, and personal loans — becoming a one-stop
-                  financial consultancy for all your needs.
+              </div>
+              <div className="p-5 rounded-2xl bg-amber-500/5 border border-amber-500/10 dark:bg-amber-500/5 dark:border-amber-500/20">
+                <p className="text-sm font-medium text-amber-800 dark:text-amber-300 leading-relaxed italic">
+                  &quot;Helping clients turn aspirations into achievements through reliable financial solutions and professional guidance for more than two decades.&quot;
                 </p>
               </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <div className="grid grid-cols-2 gap-5">
+            {/* Right Column - Stats Grid with Counter */}
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }} 
+              whileInView={{ opacity: 1, x: 0 }} 
+              viewport={{ once: true }}
+              className="lg:col-span-5 w-full"
+            >
+              <div className="grid grid-cols-2 gap-5 w-full">
                 {[
-                  { icon: Target, label: "Our Mission", value: "Make financial dreams achievable for every individual." },
-                  { icon: Eye, label: "Our Vision", value: "To be India's most trusted financial consultancy." },
-                  { icon: Users, label: "Our Clients", value: "280+ students successfully funded across India and abroad." },
-                  { icon: Award, label: "Our Expertise", value: "10+ years of combined financial consultancy experience." },
-                ].map(({ icon: Icon, label, value }) => (
-                  <div key={label} className="p-5 bg-[#F5F5F5] dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800">
-                    <Icon className="w-6 h-6 text-zinc-800 dark:text-zinc-200 mb-3" />
-                    <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">{label}</p>
-                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">{value}</p>
-                  </div>
-                ))}
+                  { value: 25, suffix: "+", label: "Years of Trusted Expertise", color: "text-blue-600 dark:text-blue-400" },
+                  { value: 1000, suffix: "+", label: "Satisfied Clients", color: "text-emerald-600 dark:text-emerald-400" },
+                  { value: 7, suffix: "+", label: "Financial Services", color: "text-amber-600 dark:text-amber-400" },
+                  { value: 2001, prefix: "Since ", label: "Building Long-Term Relationships", color: "text-purple-600 dark:text-purple-400" },
+                ].map((stat, i) => {
+                  return (
+                    <div key={stat.label} className="premium-card p-5 flex flex-col items-center text-center justify-center min-h-[150px] w-full">
+                      <div className="space-y-1 w-full flex flex-col items-center justify-center">
+                        <div className="w-full flex justify-center items-center text-center">
+                          <Counter value={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
+                        </div>
+                        <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 text-center w-full block mt-2">
+                          {stat.label}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </motion.div>
+
           </div>
         </div>
-      </section>
+      </section>n>
 
       {/* Founder Section */}
       <section className="section-padding bg-white dark:bg-gray-950">
