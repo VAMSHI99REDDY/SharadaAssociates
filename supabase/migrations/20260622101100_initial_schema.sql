@@ -85,6 +85,11 @@ DROP POLICY IF EXISTS "Allow authenticated read inquiries" ON contact_inquiries;
 CREATE POLICY "Allow authenticated read inquiries" ON contact_inquiries
   FOR SELECT TO authenticated USING (true);
 
+-- Also allow anon to read (for API route using anon key as fallback)
+DROP POLICY IF EXISTS "Allow anon read inquiries" ON contact_inquiries;
+CREATE POLICY "Allow anon read inquiries" ON contact_inquiries
+  FOR SELECT TO anon USING (true);
+
 DROP POLICY IF EXISTS "Allow authenticated update inquiries" ON contact_inquiries;
 CREATE POLICY "Allow authenticated update inquiries" ON contact_inquiries
   FOR UPDATE TO authenticated USING (true);

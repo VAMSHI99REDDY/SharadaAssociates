@@ -52,7 +52,8 @@ export default function AdminPage() {
   const [inqStatusFilter, setInqStatusFilter] = useState<InquiryStatus>("all");
   const [inqSort, setInqSort] = useState<SortOrder>("newest");
   const [inqLoading, setInqLoading] = useState(false);
-  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null); // inquiry id to confirm
+  const [inqError, setInqError] = useState("");
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
   const [updatingStatus, setUpdatingStatus] = useState<string | null>(null);
 
   // ─── Fetch applications ───────────────────────────────────────────────────
@@ -75,12 +76,17 @@ export default function AdminPage() {
   // ─── Fetch inquiries ──────────────────────────────────────────────────────
   const fetchInquiries = useCallback(async () => {
     setInqLoading(true);
+    setInqError("");
     try {
       const res = await fetch("/api/inquiries");
-      if (res.ok) {
-        const data = await res.json();
-        if (Array.isArray(data)) setInquiries(data as ContactInquiry[]);
+      const data = await res.json();
+      if (!res.ok) {
+        setInqError(data?.error || `API error ${res.status}`);
+        return;
       }
+      if (Array.isArray(data)) setInquiries(data as ContactInquiry[]);
+    } catch (e) {
+      setInqError(e instanceof Error ? e.message : "Network error");
     } finally {
       setInqLoading(false);
     }
@@ -496,6 +502,12 @@ export default function AdminPage() {
                 <div className="py-20 text-center">
                   <RefreshCw className="w-8 h-8 text-gray-300 animate-spin mx-auto mb-3" />
                   <p className="text-gray-400">Loading inquiries...</p>
+                </div>
+              ) : inqError ? (
+                <div className="py-20 text-center">
+                  <AlertTriangle className="w-10 h-10 text-red-500 mx-auto mb-3" />
+                  <p className="text-red-500 font-medium">Failed to load inquiries</p>
+                  <p className="text-sm text-red-400 mt-1 max-w-md mx-auto">{inqError}</p>
                 </div>
               ) : filteredInquiries.length === 0 ? (
                 <div className="py-20 text-center">

@@ -1,18 +1,30 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
-function getSupabase() {
+function getSupabaseAdmin() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key || url === "your_supabase_url_here") return null;
-  return createClient(url, key);
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!url || url === "your_supabase_url_here") return null;
+
+  // Prefer service role key (bypasses RLS), fall back to anon key
+  const key = serviceKey || anonKey;
+  if (!key) return null;
+
+  return createClient(url, key, {
+    auth: { persistSession: false },
+  });
 }
 
 // GET — fetch all inquiries newest first
 export async function GET() {
-  const supabase = getSupabase();
+  const supabase = getSupabaseAdmin();
   if (!supabase) {
-    return NextResponse.json({ error: "Supabase not configured" }, { status: 503 });
+    return NextResponse.json(
+      { error: "Supabase not configured. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in environment variables." },
+      { status: 503 }
+    );
   }
   const { data, error } = await supabase
     .from("contact_inquiries")
@@ -20,12 +32,12 @@ export async function GET() {
     .order("created_at", { ascending: false });
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-  return NextResponse.json(data);
+  return NextResponse.json(data ?? []);
 }
 
 // POST — insert a new inquiry
 export async function POST(req: NextRequest) {
-  const supabase = getSupabase();
+  const supabase = getSupabaseAdmin();
   if (!supabase) {
     return NextResponse.json({ error: "Supabase not configured" }, { status: 503 });
   }
@@ -50,7 +62,7 @@ export async function POST(req: NextRequest) {
 
 // PATCH — update status
 export async function PATCH(req: NextRequest) {
-  const supabase = getSupabase();
+  const supabase = getSupabaseAdmin();
   if (!supabase) {
     return NextResponse.json({ error: "Supabase not configured" }, { status: 503 });
   }
@@ -68,7 +80,7 @@ export async function PATCH(req: NextRequest) {
 
 // DELETE — delete an inquiry
 export async function DELETE(req: NextRequest) {
-  const supabase = getSupabase();
+  const supabase = getSupabaseAdmin();
   if (!supabase) {
     return NextResponse.json({ error: "Supabase not configured" }, { status: 503 });
   }
