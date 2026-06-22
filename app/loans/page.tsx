@@ -5,7 +5,11 @@ import {
   GraduationCap, Briefcase, Car, Home, Film, User, Wallet, X, ArrowRight
 } from "lucide-react";
 import EducationLoanForm from "@/components/forms/EducationLoanForm";
-import OtherLoanForm from "@/components/forms/OtherLoanForm";
+import BusinessLoanForm from "@/components/forms/BusinessLoanForm";
+import VehicleLoanForm from "@/components/forms/VehicleLoanForm";
+import HousingLoanForm from "@/components/forms/HousingLoanForm";
+import MovieFinancingForm from "@/components/forms/MovieFinancingForm";
+import PersonalLoanForm from "@/components/forms/PersonalLoanForm";
 
 const studyCountries = [
   { name: "USA", flag: "🇺🇸" },
@@ -21,13 +25,13 @@ const studyCountries = [
 ];
 
 const otherLoans = [
-  { id: "business", icon: Briefcase, title: "Business Loans", description: "Financing for your business growth and expansion.", color: "from-blue-500/10 to-transparent", borderHover: "hover:border-blue-500/50" },
-  { id: "vehicle", icon: Car, title: "Vehicle Loans", description: "Drive your dream with flexible vehicle financing.", color: "from-emerald-500/10 to-transparent", borderHover: "hover:border-emerald-500/50" },
-  { id: "housing", icon: Home, title: "Housing Loans", description: "Build or buy your dream home affordably.", color: "from-purple-500/10 to-transparent", borderHover: "hover:border-purple-500/50" },
-  { id: "movie", icon: Film, title: "Movie Financing", description: "Bring your cinematic vision to life with reliable funding.", color: "from-rose-500/10 to-transparent", borderHover: "hover:border-rose-500/50" },
-  { id: "personal", icon: User, title: "Personal Loans", description: "Flexible personal financing for every need.", color: "from-amber-500/10 to-transparent", borderHover: "hover:border-amber-500/50" },
-  { id: "fund", icon: Wallet, title: "Fund Arrangement", description: "Professional assistance for financial fund arrangements.", color: "from-cyan-500/10 to-transparent", borderHover: "hover:border-cyan-500/50" },
-  { id: "admission", icon: GraduationCap, title: "Admission Assistance", description: "Complete support for university admissions.", color: "from-indigo-500/10 to-transparent", borderHover: "hover:border-indigo-500/50" },
+  { id: "business", icon: Briefcase, title: "Business Loans", description: "Financing for your business growth and expansion.", color: "from-blue-500/10 to-transparent", borderHover: "hover:border-blue-500/50", form: BusinessLoanForm },
+  { id: "vehicle", icon: Car, title: "Vehicle Loans", description: "Drive your dream with flexible vehicle financing.", color: "from-emerald-500/10 to-transparent", borderHover: "hover:border-emerald-500/50", form: VehicleLoanForm },
+  { id: "housing", icon: Home, title: "Housing Loans", description: "Build or buy your dream home affordably.", color: "from-purple-500/10 to-transparent", borderHover: "hover:border-purple-500/50", form: HousingLoanForm },
+  { id: "movie", icon: Film, title: "Movie Financing", description: "Bring your cinematic vision to life with reliable funding.", color: "from-rose-500/10 to-transparent", borderHover: "hover:border-rose-500/50", form: MovieFinancingForm },
+  { id: "personal", icon: User, title: "Personal Loans", description: "Flexible personal financing for every need.", color: "from-amber-500/10 to-transparent", borderHover: "hover:border-amber-500/50", form: PersonalLoanForm },
+  { id: "fund", icon: Wallet, title: "Fund Arrangement", description: "Professional assistance for financial fund arrangements.", color: "from-cyan-500/10 to-transparent", borderHover: "hover:border-cyan-500/50", form: BusinessLoanForm },
+  { id: "admission", icon: GraduationCap, title: "Admission Assistance", description: "Complete support for university admissions.", color: "from-indigo-500/10 to-transparent", borderHover: "hover:border-indigo-500/50", form: EducationLoanForm },
 ];
 
 type LoanType = typeof otherLoans[0] | null;
@@ -193,7 +197,7 @@ export default function LoansPage() {
                 </button>
               </div>
               <div className="p-6">
-                <OtherLoanForm loanType={activeModal.title} />
+                <activeModal.form />
               </div>
             </motion.div>
           </motion.div>
