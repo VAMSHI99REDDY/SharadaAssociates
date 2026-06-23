@@ -31,3 +31,6 @@ next-env.d.ts
 # backups
 website_backup.zip
 
+# OneDrive sync artifacts
+components/images/visiting.png
+
