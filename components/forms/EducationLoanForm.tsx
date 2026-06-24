@@ -149,18 +149,17 @@ export default function EducationLoanForm() {
       <div className="sticky top-20 z-30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl p-4 shadow-sm border border-gray-200 dark:border-gray-800 mb-8 hidden md:block">
         <div className="flex justify-between items-center relative">
           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-gray-200 dark:bg-gray-800 rounded-full -z-10">
-            <div 
-              className="h-full bg-zinc-900 dark:bg-zinc-100 rounded-full transition-all duration-500 ease-in-out" 
+            <div
+              className="h-full bg-zinc-900 dark:bg-zinc-100 rounded-full transition-all duration-500 ease-in-out"
               style={{ width: `${((currentStep - 1) / (steps.length - 1)) * 100}%` }}
             />
           </div>
           {steps.map((step) => (
             <div key={step.id} className="flex flex-col items-center gap-2 bg-transparent">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-colors duration-300 ${
-                currentStep >= step.id 
-                  ? "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 shadow-md" 
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-colors duration-300 ${currentStep >= step.id
+                  ? "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 shadow-md"
                   : "bg-gray-100 text-gray-400 dark:bg-gray-800 dark:text-gray-500"
-              }`}>
+                }`}>
                 {currentStep > step.id ? <CheckCircle className="w-5 h-5" /> : step.id}
               </div>
               <span className={`text-xs font-semibold ${currentStep >= step.id ? "text-zinc-900 dark:text-zinc-100" : "text-gray-400 dark:text-gray-600"}`}>
@@ -181,49 +180,49 @@ export default function EducationLoanForm() {
                 <div>
                   <label className="label-text">Full Name *</label>
                   <input
-                    {...register("fullName", { 
-                      required: "Please enter your full name.", 
+                    {...register("fullName", {
+                      required: "Please enter your full name.",
                       minLength: { value: 3, message: "Minimum 3 characters required." },
                       pattern: { value: alphaSpaceRegex, message: "Please enter a valid name using letters only." }
                     })}
-                    placeholder="Enter your full name" 
-                    className={`input-field ${errors.fullName ? 'border-red-500 focus:ring-red-500 error-ring' : 'focus:border-green-500 focus:ring-green-500/20'} rounded-xl`} 
+                    placeholder="Enter your full name"
+                    className={`input-field ${errors.fullName ? 'border-red-500 focus:ring-red-500 error-ring' : 'focus:border-green-500 focus:ring-green-500/20'} rounded-xl`}
                   />
                   <ErrorMsg error={errors.fullName} />
                 </div>
                 <div>
                   <label className="label-text">Phone Number *</label>
                   <input
-                    {...register("phone", { 
-                      required: "Please enter your mobile number.", 
+                    {...register("phone", {
+                      required: "Please enter your mobile number.",
                       pattern: { value: phoneRegex, message: "Please enter a valid 10-digit mobile number." }
                     })}
-                    placeholder="+91 XXXXX XXXXX" 
-                    className={`input-field ${errors.phone ? 'border-red-500 focus:ring-red-500 error-ring' : 'focus:border-green-500 focus:ring-green-500/20'} rounded-xl`} 
+                    placeholder="+91 XXXXX XXXXX"
+                    className={`input-field ${errors.phone ? 'border-red-500 focus:ring-red-500 error-ring' : 'focus:border-green-500 focus:ring-green-500/20'} rounded-xl`}
                   />
                   <ErrorMsg error={errors.phone} />
                 </div>
                 <div>
                   <label className="label-text">Email Address *</label>
                   <input
-                    {...register("email", { 
-                      required: "Please enter your email address.", 
+                    {...register("email", {
+                      required: "Please enter your email address.",
                       pattern: { value: /^\S+@\S+\.\S+$/, message: "Please enter a valid email address." }
                     })}
-                    type="email" placeholder="your@email.com" 
-                    className={`input-field ${errors.email ? 'border-red-500 focus:ring-red-500 error-ring' : 'focus:border-green-500 focus:ring-green-500/20'} rounded-xl`} 
+                    type="email" placeholder="your@email.com"
+                    className={`input-field ${errors.email ? 'border-red-500 focus:ring-red-500 error-ring' : 'focus:border-green-500 focus:ring-green-500/20'} rounded-xl`}
                   />
                   <ErrorMsg error={errors.email} />
                 </div>
                 <div>
                   <label className="label-text">Date of Birth *</label>
                   <input
-                    {...register("dob", { 
-                      required: "Please select your date of birth.", 
+                    {...register("dob", {
+                      required: "Please select your date of birth.",
                       validate: validateAge
                     })}
-                    type="date" 
-                    className={`input-field ${errors.dob ? 'border-red-500 focus:ring-red-500 error-ring' : 'focus:border-green-500 focus:ring-green-500/20'} rounded-xl`} 
+                    type="date"
+                    className={`input-field ${errors.dob ? 'border-red-500 focus:ring-red-500 error-ring' : 'focus:border-green-500 focus:ring-green-500/20'} rounded-xl`}
                   />
                   <ErrorMsg error={errors.dob} />
                 </div>
@@ -254,25 +253,25 @@ export default function EducationLoanForm() {
                 <div>
                   <label className="label-text">City *</label>
                   <input
-                    {...register("city", { 
-                      required: "Please enter your city.", 
+                    {...register("city", {
+                      required: "Please enter your city.",
                       pattern: { value: alphaSpaceRegex, message: "Please enter a valid city name." }
                     })}
-                    placeholder="Enter your city" 
-                    className={`input-field ${errors.city ? 'border-red-500 error-ring' : ''} rounded-xl`} 
+                    placeholder="Enter your city"
+                    className={`input-field ${errors.city ? 'border-red-500 error-ring' : ''} rounded-xl`}
                   />
                   <ErrorMsg error={errors.city} />
                 </div>
                 <div className="md:col-span-2 lg:col-span-3">
                   <label className="label-text">Current Address *</label>
                   <textarea
-                    {...register("address", { 
+                    {...register("address", {
                       required: "Please enter your complete address.",
                       minLength: { value: 10, message: "Minimum 10 characters required." },
                       maxLength: { value: 250, message: "Maximum 250 characters allowed." }
                     })}
-                    rows={3} placeholder="Enter your full street address" 
-                    className={`input-field resize-none ${errors.address ? 'border-red-500 error-ring' : ''} rounded-xl`} 
+                    rows={3} placeholder="Enter your full street address"
+                    className={`input-field resize-none ${errors.address ? 'border-red-500 error-ring' : ''} rounded-xl`}
                   />
                   <ErrorMsg error={errors.address} />
                 </div>
@@ -315,12 +314,12 @@ export default function EducationLoanForm() {
                 <div className="md:col-span-2 lg:col-span-3">
                   <label className="label-text">Course Name *</label>
                   <input
-                    {...register("courseName", { 
-                      required: "Please enter your course name.", 
+                    {...register("courseName", {
+                      required: "Please enter your course name.",
                       pattern: { value: courseRegex, message: "Please enter a valid course name (letters and punctuation only)." }
                     })}
-                    placeholder="e.g. Master of Science in Computer Science" 
-                    className={`input-field ${errors.courseName ? 'border-red-500 error-ring' : ''} rounded-xl`} 
+                    placeholder="e.g. Master of Science in Computer Science"
+                    className={`input-field ${errors.courseName ? 'border-red-500 error-ring' : ''} rounded-xl`}
                   />
                   <ErrorMsg error={errors.courseName} />
                 </div>
@@ -352,13 +351,13 @@ export default function EducationLoanForm() {
                 <div className="md:col-span-2 lg:col-span-3">
                   <label className="label-text">University Name *</label>
                   <input
-                    {...register("universityName", { 
+                    {...register("universityName", {
                       required: "Please enter your university name.",
                       minLength: { value: 3, message: "Minimum 3 characters required." },
                       pattern: { value: alphaSpaceRegex, message: "Please enter a valid university name (letters only)." }
                     })}
-                    placeholder="Enter University name" 
-                    className={`input-field ${errors.universityName ? 'border-red-500 error-ring' : ''} rounded-xl`} 
+                    placeholder="Enter University name"
+                    className={`input-field ${errors.universityName ? 'border-red-500 error-ring' : ''} rounded-xl`}
                   />
                   <ErrorMsg error={errors.universityName} />
                 </div>
@@ -424,25 +423,25 @@ export default function EducationLoanForm() {
                 <div>
                   <label className="label-text">Parent/Guardian Name *</label>
                   <input
-                    {...register("parentName", { 
+                    {...register("parentName", {
                       required: "Please enter parent/guardian name.",
                       minLength: { value: 3, message: "Minimum 3 characters required." },
                       pattern: { value: alphaSpaceRegex, message: "Please enter a valid parent name (letters only)." }
                     })}
-                    placeholder="Enter name" 
-                    className={`input-field rounded-xl ${errors.parentName ? 'border-red-500 error-ring' : ''}`} 
+                    placeholder="Enter name"
+                    className={`input-field rounded-xl ${errors.parentName ? 'border-red-500 error-ring' : ''}`}
                   />
                   <ErrorMsg error={errors.parentName} />
                 </div>
                 <div>
                   <label className="label-text">Parent Phone *</label>
                   <input
-                    {...register("parentPhone", { 
-                      required: "Please enter parent mobile number.", 
+                    {...register("parentPhone", {
+                      required: "Please enter parent mobile number.",
                       pattern: { value: phoneRegex, message: "Please enter a valid 10-digit mobile number." }
                     })}
-                    placeholder="+91 XXXXX XXXXX" 
-                    className={`input-field rounded-xl ${errors.parentPhone ? 'border-red-500 error-ring' : ''}`} 
+                    placeholder="+91 XXXXX XXXXX"
+                    className={`input-field rounded-xl ${errors.parentPhone ? 'border-red-500 error-ring' : ''}`}
                   />
                   <ErrorMsg error={errors.parentPhone} />
                 </div>
@@ -486,9 +485,8 @@ export default function EducationLoanForm() {
             type="button"
             onClick={prevStep}
             disabled={currentStep === 1 || loading}
-            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
-              currentStep === 1 ? 'opacity-0 pointer-events-none' : 'text-zinc-600 hover:bg-gray-100 dark:text-zinc-300 dark:hover:bg-gray-800'
-            }`}
+            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${currentStep === 1 ? 'opacity-0 pointer-events-none' : 'text-zinc-600 hover:bg-gray-100 dark:text-zinc-300 dark:hover:bg-gray-800'
+              }`}
           >
             <ChevronLeft className="w-5 h-5" /> Previous
           </button>

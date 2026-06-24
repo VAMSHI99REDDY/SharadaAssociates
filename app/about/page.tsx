@@ -48,24 +48,24 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="bg-gradient-to-br from-zinc-900 to-zinc-950 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-            <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-3xl lg:text-5xl font-bold mb-4">
-              Our Story
-            </motion.h1>
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-zinc-400 text-lg max-w-2xl mx-auto">
-              For over 25 years, Sharada Associates has been helping students, families, entrepreneurs, and businesses secure education loans, business funding, property loans, vehicle financing, and other financial solutions with confidence. Our commitment to transparency, personalized guidance, and customer satisfaction has made us a trusted financial partner for generations.
-            </motion.p>
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-3xl lg:text-5xl font-bold mb-4">
+            Our Story
+          </motion.h1>
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-zinc-400 text-lg max-w-2xl mx-auto">
+            For over 25 years, Sharada Associates has been helping students, families, entrepreneurs, and businesses secure education loans, business funding, property loans, vehicle financing, and other financial solutions with confidence. Our commitment to transparency, personalized guidance, and customer satisfaction has made us a trusted financial partner for generations.
+          </motion.p>
         </div>
       </section>
 
       {/* Story */}
       <section className="section-padding bg-white dark:bg-gray-950">
         <div className="container-max space-y-12">
-          
+
           {/* Top Story Content */}
           <div className="max-w-4xl">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="space-y-6"
             >
@@ -105,7 +105,7 @@ export default function AboutPage() {
                 ] as { value: number; suffix?: string; prefix?: string; label: string }[]
               ).map((stat, i) => {
                 return (
-                  <motion.div 
+                  <motion.div
                     key={stat.label}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -133,7 +133,7 @@ export default function AboutPage() {
       {/* Founder Section */}
       <section className="section-padding bg-white dark:bg-gray-950">
         <div className="container-max">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -141,9 +141,9 @@ export default function AboutPage() {
             className="bg-[#F2EDE7] dark:bg-zinc-900/80 rounded-[2.5rem] p-8 md:p-12 lg:p-16 relative overflow-hidden"
           >
 
-            
+
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center relative z-10">
-              
+
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -166,7 +166,7 @@ export default function AboutPage() {
 
               <div className="lg:col-span-7 space-y-8">
                 <div>
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -176,7 +176,7 @@ export default function AboutPage() {
                     <Award className="w-4 h-4" />
                     <span>Leadership</span>
                   </motion.div>
-                  <motion.h2 
+                  <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -187,7 +187,7 @@ export default function AboutPage() {
                   </motion.h2>
                 </div>
 
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -202,7 +202,7 @@ export default function AboutPage() {
                   </p>
                 </motion.div>
 
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}

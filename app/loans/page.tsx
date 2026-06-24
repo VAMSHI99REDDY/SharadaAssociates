@@ -149,7 +149,7 @@ export default function LoansPage() {
                   className={`w-full text-left p-8 rounded-[2rem] bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/60 dark:border-gray-800/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] hover:shadow-xl hover:scale-[1.02] transition-all duration-300 group relative overflow-hidden ${loan.borderHover}`}
                 >
                   <div className={`absolute inset-0 bg-gradient-to-br ${loan.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                  
+
                   <div className="relative z-10">
                     <div className="w-14 h-14 bg-white dark:bg-gray-800 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-gray-100 dark:border-gray-700 group-hover:shadow-md transition-all">
                       <loan.icon className="w-6 h-6 text-zinc-800 dark:text-zinc-200" />
@@ -157,7 +157,7 @@ export default function LoansPage() {
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{loan.title}</h3>
                     <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 leading-relaxed line-clamp-2">{loan.description}</p>
                     <div className="flex items-center text-sm font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      Learn More 
+                      Learn More
                       <ArrowRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>

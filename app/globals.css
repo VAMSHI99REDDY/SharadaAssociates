@@ -10,12 +10,12 @@
   --bg-secondary: #FFFFFF;
   --text-primary: #111827;
   --text-secondary: #6B7280;
-  --border: rgba(0,0,0,0.08);
+  --border: rgba(0, 0, 0, 0.08);
 
   /* Glass card tokens */
-  --glass-bg: rgba(255,255,255,0.85);
-  --glass-border: rgba(255,255,255,0.6);
-  --glass-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 
   /* Buttons */
   --btn-primary-bg: #111827;
@@ -36,16 +36,20 @@
 }
 
 .dark {
-  --bg-primary: #0F172A; /* Slate 900 */
-  --bg-secondary: #1E293B; /* Slate 800 */
-  --text-primary: #F8FAFC; /* Slate 50 */
-  --text-secondary: #94A3B8; /* Slate 400 */
-  --border: rgba(255,255,255,0.08);
+  --bg-primary: #0F172A;
+  /* Slate 900 */
+  --bg-secondary: #1E293B;
+  /* Slate 800 */
+  --text-primary: #F8FAFC;
+  /* Slate 50 */
+  --text-secondary: #94A3B8;
+  /* Slate 400 */
+  --border: rgba(255, 255, 255, 0.08);
 
   /* Glass card tokens */
-  --glass-bg: rgba(30,41,59,0.85);
-  --glass-border: rgba(255,255,255,0.08);
-  --glass-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  --glass-bg: rgba(30, 41, 59, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 
   /* Buttons */
   --btn-primary-bg: #F8FAFC;
@@ -53,11 +57,11 @@
   --btn-primary-hover: #E2E8F0;
 
   /* Accent palette */
-  --gold-light: rgba(212,160,23,0.15);
-  --royal-blue-light: rgba(37,99,235,0.15);
-  --emerald-light: rgba(16,185,129,0.15);
-  --orange-light: rgba(245,158,11,0.15);
-  --purple-light: rgba(139,92,246,0.15);
+  --gold-light: rgba(212, 160, 23, 0.15);
+  --royal-blue-light: rgba(37, 99, 235, 0.15);
+  --emerald-light: rgba(16, 185, 129, 0.15);
+  --orange-light: rgba(245, 158, 11, 0.15);
+  --purple-light: rgba(139, 92, 246, 0.15);
 }
 
 * {
@@ -105,10 +109,11 @@ body {
     background: var(--btn-primary-bg);
     color: var(--btn-primary-text);
   }
+
   .btn-primary:hover {
     background: var(--btn-primary-hover);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   }
 
   /* Outline button */
@@ -118,9 +123,10 @@ body {
     color: var(--text-primary);
     background: transparent;
   }
+
   .btn-outline:hover {
     background: var(--bg-secondary);
-    border-color: rgba(0,0,0,0.15);
+    border-color: rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
   }
 
@@ -130,10 +136,11 @@ body {
     background: var(--gold);
     color: #fff;
   }
+
   .btn-gold:hover {
     background: #b8860f;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(212,160,23,0.3);
+    box-shadow: 0 8px 24px rgba(212, 160, 23, 0.3);
   }
 
   /* Badge pill */
@@ -149,12 +156,13 @@ body {
     @apply rounded-3xl p-5 transition-all duration-300;
     background: var(--bg-primary);
     border: 1px solid var(--border);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   }
+
   .premium-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.1);
-    border-color: rgba(0,0,0,0.12);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.12);
   }
 
   /* Section headings */
@@ -177,11 +185,13 @@ body {
     background: var(--bg-primary);
     color: var(--text-primary);
   }
+
   .input-field:focus {
     outline: none;
     border-color: var(--royal-blue);
-    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
   }
+
   .input-field::placeholder {
     color: var(--text-secondary);
   }
@@ -193,24 +203,63 @@ body {
   }
 
   /* Icon wrapper variants */
-  .icon-blue   { background: var(--royal-blue-light); color: var(--royal-blue); }
-  .icon-gold   { background: var(--gold-light);        color: var(--gold); }
-  .icon-green  { background: var(--emerald-light);     color: var(--emerald); }
-  .icon-orange { background: var(--orange-light);      color: var(--orange); }
-  .icon-purple { background: var(--purple-light);      color: var(--purple); }
+  .icon-blue {
+    background: var(--royal-blue-light);
+    color: var(--royal-blue);
+  }
+
+  .icon-gold {
+    background: var(--gold-light);
+    color: var(--gold);
+  }
+
+  .icon-green {
+    background: var(--emerald-light);
+    color: var(--emerald);
+  }
+
+  .icon-orange {
+    background: var(--orange-light);
+    color: var(--orange);
+  }
+
+  .icon-purple {
+    background: var(--purple-light);
+    color: var(--purple);
+  }
 }
 
 /* ── Scrollbar ── */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #FFFFFF; }
-::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #D1D5DB; }
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFFFFF;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E5E7EB;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D1D5DB;
+}
 
 /* ── WhatsApp Pulse ── */
 @keyframes pulse-ring {
-  0%   { transform: scale(0.8); opacity: 0.8; }
-  100% { transform: scale(1.5); opacity: 0; }
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
 }
+
 .whatsapp-pulse::before {
   content: "";
   position: absolute;
@@ -223,9 +272,17 @@ body {
 
 /* ── Counter animation ── */
 @keyframes countUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 .count-up {
   animation: countUp 0.6s ease-out forwards;
 }
@@ -239,24 +296,34 @@ body {
 }
 
 /* ── Section BG alternating ── */
-.bg-section-alt { background: var(--bg-secondary); }
+.bg-section-alt {
+  background: var(--bg-secondary);
+}
 
 /* ── Testimonials slider ── */
 .testimonials-track {
   display: flex;
-  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ── Footer links ── */
 .footer-link {
   color: var(--text-secondary);
 }
+
 .footer-link:hover {
   color: var(--royal-blue);
 }
 
 /* ── Smooth fade in ── */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
