@@ -137,22 +137,25 @@ export default function HeroSection() {
                 href="https://wa.me/919985111136" 
                 target="_blank" 
                 rel="noreferrer" 
+                aria-label="Contact us on WhatsApp"
                 className="btn-primary gap-2 w-full sm:w-auto justify-center hover:scale-105 transition-transform"
                 style={{ background: "#25D366", borderColor: "#25D366", color: "#fff" }}
               >
-                <MessageCircle className="w-5 h-5 fill-white" />
+                <MessageCircle className="w-5 h-5 fill-white" aria-hidden="true" />
                 WhatsApp Us
               </a>
               <a 
                 href="mailto:dilipreddy99@gmail.com" 
+                aria-label="Email us at dilipreddy99@gmail.com"
                 className="btn-outline gap-2 w-full sm:w-auto justify-center hover:scale-105 transition-transform"
                 style={{ background: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.3)", color: "#fff" }}
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-5 h-5" aria-hidden="true" />
                 Email Us
               </a>
               <a 
                 href="tel:+919985111136" 
+                aria-label="Call us at +91 99851 11136"
                 className="btn-outline w-full sm:w-auto justify-center hover:scale-105 transition-transform"
                 style={{ background: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.3)", color: "#fff" }}
               >

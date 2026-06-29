@@ -70,11 +70,11 @@ export default function AboutSection() {
             </div>
 
             {/* Supporting Text Box */}
-            <div className="p-5 rounded-2xl bg-amber-500/5 border border-amber-500/10 dark:bg-amber-500/5 dark:border-amber-500/20">
+            <blockquote className="p-5 rounded-2xl bg-amber-500/5 border border-amber-500/10 dark:bg-amber-500/5 dark:border-amber-500/20">
               <p className="text-sm font-medium text-amber-800 dark:text-amber-300 leading-relaxed italic">
                 &quot;Helping clients turn aspirations into achievements through reliable financial solutions and professional guidance for more than two decades.&quot;
               </p>
-            </div>
+            </blockquote>
           </motion.div>
 
           {/* Right Column - Stats Grid */}
